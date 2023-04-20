@@ -1,0 +1,103 @@
+cpu-bind=MASK - n2gpu1212, task  0  0 [264135]: mask |--------|BBBBBBBB||--------|--------||--------|--------||--------|--------||||BBBBBBBB|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1212, task  0  0 [264179]: mask |--------|BBBBBBBB||--------|--------||--------|--------||--------|--------||||BBBBBBBB|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1213, task  1  0 [2021628]: mask |BBBBBBBB|--------||--------|--------||--------|--------||--------|--------||||BBBBBBBB|--------||--------|--------||--------|--------||--------|--------|  set
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+WARNING:torch.distributed.elastic.rendezvous.dynamic_rendezvous:The node 'n2gpu1212.ab2021.local_264179_0' has failed to send a keep-alive heartbeat to the rendezvous 'none' due to an error of type RendezvousTimeoutError.
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 25, in <module>
+[default0]:    from megatron.data.gpt_dataset import build_train_valid_test_datasets, build_dataset_group
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data/__init__.py", line 1, in <module>
+[default0]:    from . import indexed_dataset
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data/indexed_dataset.py", line 102, in <module>
+[default0]:    6: np.float,
+[default0]:  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/numpy/__init__.py", line 305, in __getattr__
+[default0]:    raise AttributeError(__former_attrs__[attr])
+[default0]:AttributeError: module 'numpy' has no attribute 'float'.
+[default0]:`np.float` was a deprecated alias for the builtin `float`. To avoid this error in existing code, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+[default0]:The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+[default0]:    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 2021694) of binary: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 25, in <module>
+[default0]:    from megatron.data.gpt_dataset import build_train_valid_test_datasets, build_dataset_group
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data/__init__.py", line 1, in <module>
+[default0]:    from . import indexed_dataset
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data/indexed_dataset.py", line 102, in <module>
+[default0]:    6: np.float,
+[default0]:  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/numpy/__init__.py", line 305, in __getattr__
+[default0]:    raise AttributeError(__former_attrs__[attr])
+[default0]:AttributeError: module 'numpy' has no attribute 'float'.
+[default0]:`np.float` was a deprecated alias for the builtin `float`. To avoid this error in existing code, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+[default0]:The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+[default0]:    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 264265) of binary: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 798, in <module>
+    main()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-12_16:22:23
+  host      : n2gpu1212.ab2021.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 264265)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 798, in <module>
+    main()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-12_16:19:07
+  host      : n2gpu1213.ab2021.local
+  rank      : 1 (local_rank: 0)
+  exitcode  : 1 (pid: 2021694)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: n2gpu1213: task 1: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=3376626.0
+srun: error: n2gpu1212: task 0: Exited with exit code 1

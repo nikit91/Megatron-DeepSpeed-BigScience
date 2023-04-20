@@ -416,8 +416,9 @@ def setup_model_and_optimizer(model_provider_func):
 
         import json
         import io
-        with io.open(args.deepspeed_config, "r", encoding="utf-8") as f:
-            config = json.load(f)
+        #with io.open(args.deepspeed_config, "r", encoding="utf-8") as f:
+        #    config = json.load(f)
+        config=None
         if args.universal_checkpoint:
             config["checkpoint"] = {"load_universal": True}
 

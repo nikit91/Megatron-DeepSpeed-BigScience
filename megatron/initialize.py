@@ -171,6 +171,10 @@ def _compile_dependencies():
 
     args = get_args()
 
+    #print('before test barrier, world size', torch.distributed.get_world_size(), 'rank', torch.distributed.get_rank())
+    #torch.distributed.barrier()
+    #print('after test barrier')
+
     # =========================
     # Compile dataset C++ code.
     # =========================
@@ -212,19 +216,23 @@ def _compile_dependencies():
         start_time = time.time()
         print('> compiling and loading fused kernels ...', flush=True)
         fused_kernels.load(args)
+        print('rank 0 finished kernel load')
         torch.distributed.barrier()
     else:
+        print('rank>0 waiting for rank 0 before loading kernels')
         torch.distributed.barrier()
+        print('rank>0 done waiting for rank 0 before loading kernels')
         import warnings
         with warnings.catch_warnings():
             # ignore loading noise
-            warnings.simplefilter("ignore")
+            #warnings.simplefilter("ignore")
             fused_kernels.load(args)
 
     # Simple barrier to make sure all ranks have passed the
     # compilation phase successfully before moving on to the
     # rest of the program. We think this might ensure that
     # the lock is released.
+    print('barrier after loading kernels')
     torch.distributed.barrier()
     if torch.distributed.get_rank() == 0:
         print('>>> done with compiling and loading fused kernels. '

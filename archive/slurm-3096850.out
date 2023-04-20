@@ -1,0 +1,25 @@
+cpu-bind=MASK - n2gpu1202, task  0  0 [3830730]: mask |B-------|--------||--------|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1202, task  0  0 [3830770]: mask |B-------|--------||--------|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1203, task  1  0 [1054747]: mask |B-------|--------||--------|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 766, in <module>
+    main()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 762, in main
+    run(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 752, in run
+    config, cmd, cmd_args = config_from_args(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 656, in config_from_args
+    min_nodes, max_nodes = parse_min_max_nnodes(args.nnodes)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 594, in parse_min_max_nnodes
+    min_nodes = max_nodes = int(arr[0])
+ValueError: invalid literal for int() with base 10: 'NNODES'
+srun: error: n2gpu1202: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=3096850.0
+srun: error: n2gpu1203: task 1: Terminated
+srun: Force Terminated StepId=3096850.0

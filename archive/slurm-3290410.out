@@ -1,0 +1,91 @@
+cpu-bind=MASK - n2gpu1202, task  0  0 [1763992]: mask |-------B|BBBBBBBB||BBBBBBB-|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1202, task  0  0 [1764030]: mask |-------B|BBBBBBBB||BBBBBBB-|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1204, task  1  0 [195329]: mask |---BBBBB|BBBBB---||-----BBB|BBB-----||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 20, in <module>
+[default0]:    from megatron import get_args
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/__init__.py", line 36, in <module>
+[default0]:    from .initialize  import initialize_megatron
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 32, in <module>
+[default0]:    from megatron import print_rank_0
+[default0]:ImportError: cannot import name 'print_rank_0' from partially initialized module 'megatron' (most likely due to a circular import) (/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/__init__.py)
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 20, in <module>
+[default0]:    from megatron import get_args
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/__init__.py", line 36, in <module>
+[default0]:    from .initialize  import initialize_megatron
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 32, in <module>
+[default0]:    from megatron import print_rank_0
+[default0]:ImportError: cannot import name 'print_rank_0' from partially initialized module 'megatron' (most likely due to a circular import) (/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/__init__.py)
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 1764051) of binary: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 195482) of binary: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/bin/python
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 766, in <module>
+    return _run_code(code, main_globals, None,
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 766, in <module>
+    main()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    main()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 762, in main
+    return f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 762, in main
+    run(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 753, in run
+    run(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/run.py", line 753, in run
+    elastic_launch(
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 132, in __call__
+    elastic_launch(
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 132, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 246, in launch_agent
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/lola/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 246, in launch_agent
+    raise ChildFailedError(
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-03-23_13:39:12
+  host      : n2gpu1202.ab2021.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1764051)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-03-23_13:39:13
+  host      : n2gpu1204.ab2021.local
+  rank      : 1 (local_rank: 0)
+  exitcode  : 1 (pid: 195482)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+srun: error: n2gpu1202: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=3290410.0
+srun: error: n2gpu1204: task 1: Terminated
+srun: Force Terminated StepId=3290410.0

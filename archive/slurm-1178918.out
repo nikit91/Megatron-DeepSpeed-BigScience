@@ -1,0 +1,1282 @@
+cpu-bind=MASK - n2gpu1208, task  0  0 [2583669]: mask |BBBBBBBB|BBBBBBBB||BBBBBBBB|BBBBBBBB||BBBBBBBB|BBBBBBBB||BBBBBBBB|BBBBBBBB||||BBBBBBBB|BBBBBBBB||BBBBBBBB|BBBBBBBB||BBBBBBBB|BBBBBBBB||BBBBBBBB|BBBBBBBB|  set
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+python -u -m torch.distributed.run --nproc_per_node 2 --nnodes 1 --rdzv_endpoint localhost:6777 --rdzv_backend c10d --max_restarts 0 --tee 3 pretrain_gpt.py --tensor-model-parallel-size 2 --pipeline-model-parallel-size 1 --distributed-backend nccl --num-layers 2 --hidden-size 8 --num-attention-heads 2 --seq-length 512 --max-position-embeddings 512 --micro-batch-size 1 --rampup-batch-size 2 2 1_000 --global-batch-size 16 --train-samples 10_000 --optimizer adam --adam-beta1 0.9 --adam-beta2 0.95 --adam-eps 1e-8 --lr 1e-4 --lr-warmup-samples 5 --min-lr 1e-6 --lr-decay-style cosine --lr-decay-samples 12 --clip-grad 1.0 --weight-decay 1e-1 --fp16 --partition-activations --seed 42 --vocab-file data/gpt2-vocab.json --merge-file data/gpt2-merges.txt --exit-interval 100 --log-interval 10 --save-interval 50 --eval-interval 100 --eval-iters 10 --checkpoint-activations --save checkpoints/gpt2 --load checkpoints/gpt2 --data-path data/meg-gpt2-oscar-en-10k_text_document --tensorboard-dir output_dir/tensorboard --tensorboard-queue-size 5 --log-timers-to-tensorboard --log-batch-size-to-tensorboard --log-validation-ppl-to-tensorboard --deepspeed --deepspeed_config ./ds_config.json --zero-stage 1 --deepspeed-activation-checkpointing
+WARNING:__main__:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[default0]:using world size: 2, data-parallel-size: 1, tensor-model-parallel size: 2, pipeline-model-parallel size: 1 
+[default0]:using torch.float16 for parameters ...
+[default0]:------------------------ arguments ------------------------
+[default0]:  abort_on_unmet_fused_kernel_constraints ......... False
+[default0]:  accumulate_allreduce_grads_in_fp32 .............. False
+[default0]:  adam_beta1 ...................................... 0.9
+[default0]:  adam_beta2 ...................................... 0.95
+[default0]:  adam_eps ........................................ 1e-08
+[default0]:  adlr_autoresume ................................. False
+[default0]:  adlr_autoresume_interval ........................ 1000
+[default0]:  apply_query_key_layer_scaling ................... True
+[default0]:  apply_residual_connection_post_layernorm ........ False
+[default0]:  attention_dropout ............................... 0.1
+[default0]:  attention_softmax_in_fp32 ....................... False
+[default0]:  bert_binary_head ................................ True
+[default0]:  bert_load ....................................... None
+[default0]:  bf16 ............................................ False
+[default0]:  bias_dropout_fusion ............................. True
+[default0]:  bias_gelu_fusion ................................ True
+[default0]:  biencoder_projection_dim ........................ 0
+[default0]:  biencoder_shared_query_context_model ............ False
+[default0]:  block_data_path ................................. None
+[default0]:  checkpoint_activations .......................... True
+[default0]:  checkpoint_in_cpu ............................... False
+[default0]:  checkpoint_num_layers ........................... 1
+[default0]:  clip_grad ....................................... 1.0
+[default0]:  codecarbon_dir .................................. None
+[default0]:  consumed_train_samples .......................... 0
+[default0]:  consumed_train_tokens ........................... 0
+[default0]:  consumed_valid_samples .......................... 0
+[default0]:  contigious_checkpointing ........................ False
+[default0]:  cpu_optimizer ................................... False
+[default0]:  cpu_torch_adam .................................. False
+[default0]:  curriculum_learning ............................. False
+[default0]:  data_impl ....................................... infer
+[default0]:  data_parallel_size .............................. 1
+[default0]:  data_path ....................................... ['data/meg-gpt2-oscar-en-10k_text_document']
+[default0]:  dataloader_type ................................. single
+[default0]:  DDP_impl ........................................ local
+[default0]:  decoder_seq_length .............................. None
+[default0]:  deepscale ....................................... False
+[default0]:  deepscale_config ................................ None
+[default0]:  deepspeed ....................................... True
+[default0]:  deepspeed_activation_checkpointing .............. True
+[default0]:  deepspeed_config ................................ ./ds_config.json
+[default0]:  deepspeed_mpi ................................... False
+[default0]:  distribute_checkpointed_activations ............. False
+[default0]:  distributed_backend ............................. nccl
+[default0]:  embed_layernorm ................................. False
+[default0]:  embedding_path .................................. None
+[default0]:  encoder_seq_length .............................. 512
+[default0]:  eod_mask_loss ................................... False
+[default0]:  eval_interval ................................... 100
+[default0]:  eval_iters ...................................... 10
+[default0]:  eval_only ....................................... None
+[default0]:  evidence_data_path .............................. None
+[default0]:  exit_duration_in_mins ........................... None
+[default0]:  exit_interval ................................... 100
+[default0]:  ffn_hidden_size ................................. 32
+[default0]:  finetune ........................................ False
+[default0]:  fp16 ............................................ True
+[default0]:  fp16_lm_cross_entropy ........................... False
+[default0]:  fp32_residual_connection ........................ False
+[default0]:  gigaflos_no_embeds .............................. 0
+[default0]:  global_batch_size ............................... 16
+[default0]:  glu_activation .................................. None
+[default0]:  hidden_dropout .................................. 0.1
+[default0]:  hidden_size ..................................... 8
+[default0]:  hysteresis ...................................... 2
+[default0]:  ict_head_size ................................... None
+[default0]:  ict_load ........................................ None
+[default0]:  img_dim ......................................... 224
+[default0]:  indexer_batch_size .............................. 128
+[default0]:  indexer_log_interval ............................ 1000
+[default0]:  inference ....................................... False
+[default0]:  init_method_std ................................. 0.02
+[default0]:  init_method_xavier_uniform ...................... False
+[default0]:  initial_loss_scale .............................. 4294967296
+[default0]:  kill_switch_path ................................ None
+[default0]:  kv_channels ..................................... 4
+[default0]:  layernorm_epsilon ............................... 1e-05
+[default0]:  lazy_mpu_init ................................... None
+[default0]:  load ............................................ checkpoints/gpt2
+[default0]:  local_rank ...................................... None
+[default0]:  log_batch_size_to_tensorboard ................... True
+[default0]:  log_interval .................................... 10
+[default0]:  log_learning_rate_to_tensorboard ................ True
+[default0]:  log_level ....................................... None
+[default0]:  log_level_replica ............................... None
+[default0]:  log_loss_scale_to_tensorboard ................... True
+[default0]:  log_num_zeros_in_grad ........................... False
+[default0]:  log_params_norm ................................. False
+[default0]:  log_path ........................................ None
+[default0]:  log_timers_to_tensorboard ....................... True
+[default0]:  log_validation_ppl_to_tensorboard ............... True
+[default0]:  loss_on_targets_only ............................ False
+[default0]:  loss_scale ...................................... None
+[default0]:  loss_scale_window ............................... 1000
+[default0]:  lr .............................................. 0.0001
+[default0]:  lr_decay_iters .................................. None
+[default0]:  lr_decay_samples ................................ 12
+[default0]:  lr_decay_style .................................. cosine
+[default0]:  lr_decay_tokens ................................. None
+[default0]:  lr_warmup_fraction .............................. None
+[default0]:  lr_warmup_iters ................................. 0
+[default0]:  lr_warmup_samples ............................... 5
+[default0]:  make_vocab_size_divisible_by .................... 128
+[default0]:  mask_prob ....................................... 0.15
+[default0]:  masked_softmax_fusion ........................... True
+[default0]:  max_position_embeddings ......................... 512
+[default0]:  mean_noise_span_length .......................... None
+[default0]:  memory_centric_tiled_linear ..................... False
+[default0]:  merge_file ...................................... data/gpt2-merges.txt
+[default0]:  micro_batch_size ................................ 1
+[default0]:  min_loss_scale .................................. 1.0
+[default0]:  min_lr .......................................... 1e-06
+[default0]:  mmap_warmup ..................................... False
+[default0]:  no_load_optim ................................... None
+[default0]:  no_load_rng ..................................... None
+[default0]:  no_save_optim ................................... None
+[default0]:  no_save_rng ..................................... None
+[default0]:  noise_density ................................... None
+[default0]:  num_attention_heads ............................. 2
+[default0]:  num_channels .................................... 3
+[default0]:  num_classes ..................................... 1000
+[default0]:  num_layers ...................................... 2
+[default0]:  num_layers_per_virtual_pipeline_stage ........... None
+[default0]:  num_workers ..................................... 2
+[default0]:  onnx_safe ....................................... None
+[default0]:  openai_gelu ..................................... False
+[default0]:  optimizer ....................................... adam
+[default0]:  override_lr_scheduler ........................... False
+[default0]:  pad_vocab_size_to ............................... None
+[default0]:  params_dtype .................................... torch.float16
+[default0]:  partition_activations ........................... True
+[default0]:  patch_dim ....................................... 16
+[default0]:  pipeline_model_parallel_size .................... 1
+[default0]:  position_embedding_type ......................... PositionEmbeddingType.absolute
+[default0]:  pp_partition_method ............................. None
+[default0]:  profile_backward ................................ False
+[default0]:  query_in_block_prob ............................. 0.1
+[default0]:  rampup_batch_size ............................... ['2', '2', '1_000']
+[default0]:  rank ............................................ 0
+[default0]:  remote_device ................................... none
+[default0]:  reset_attention_mask ............................ False
+[default0]:  reset_position_ids .............................. False
+[default0]:  retriever_report_topk_accuracies ................ []
+[default0]:  retriever_score_scaling ......................... False
+[default0]:  retriever_seq_length ............................ 256
+[default0]:  reweight_loss_based_on_position_frequency ....... False
+[default0]:  sample_rate ..................................... 1.0
+[default0]:  save ............................................ checkpoints/gpt2
+[default0]:  save_interval ................................... 50
+[default0]:  scatter_gather_tensors_in_pipeline .............. True
+[default0]:  scattered_embeddings ............................ False
+[default0]:  seed ............................................ 42
+[default0]:  seq_length ...................................... 512
+[default0]:  sgd_momentum .................................... 0.9
+[default0]:  short_seq_prob .................................. 0.1
+[default0]:  skip_train_iteration_range ...................... None
+[default0]:  split ........................................... 969, 30, 1
+[default0]:  split_transformers .............................. False
+[default0]:  sync_tp_duplicated_parameters ................... False
+[default0]:  synchronize_each_layer .......................... False
+[default0]:  tensor_model_parallel_size ...................... 2
+[default0]:  tensorboard_dir ................................. output_dir/tensorboard
+[default0]:  tensorboard_log_interval ........................ 1
+[default0]:  tensorboard_queue_size .......................... 5
+[default0]:  test_weighted_split_names ....................... None
+[default0]:  test_weighted_split_paths ....................... None
+[default0]:  test_weighted_split_paths_path .................. None
+[default0]:  test_weighted_split_splits ...................... None
+[default0]:  test_weighted_split_weights ..................... None
+[default0]:  tile_factor ..................................... 1
+[default0]:  titles_data_path ................................ None
+[default0]:  tokenizer_name_or_path .......................... None
+[default0]:  tokenizer_type .................................. GPT2BPETokenizer
+[default0]:  train_iters ..................................... None
+[default0]:  train_samples ................................... 10000
+[default0]:  train_tokens .................................... None
+[default0]:  train_weighted_split_paths ...................... None
+[default0]:  train_weighted_split_paths_path ................. None
+[default0]:  universal_checkpoint ............................ False
+[default0]:  use_bnb_optimizer ............................... False
+[default0]:  use_checkpoint_lr_scheduler ..................... False
+[default0]:  use_contiguous_buffers_in_ddp ................... False
+[default0]:  use_cpu_initialization .......................... None
+[default0]:  use_one_sent_docs ............................... False
+[default0]:  use_pin_memory .................................. False
+[default0]:  valid_num_workers ............................... 2
+[default0]:  valid_weighted_split_names ...................... None
+[default0]:  valid_weighted_split_paths ...................... None
+[default0]:  valid_weighted_split_paths_path ................. None
+[default0]:  valid_weighted_split_splits ..................... None
+[default0]:  valid_weighted_split_weights .................... None
+[default0]:  virtual_pipeline_model_parallel_size ............ None
+[default0]:  vocab_extra_ids ................................. 0
+[default0]:  vocab_file ...................................... data/gpt2-vocab.json
+[default0]:  weight_decay .................................... 0.1
+[default0]:  world_size ...................................... 2
+[default0]:  zero_allgather_bucket_size ...................... 0.0
+[default0]:  zero_contigious_gradients ....................... False
+[default0]:  zero_reduce_bucket_size ......................... 0.0
+[default0]:  zero_reduce_scatter ............................. False
+[default0]:  zero_stage ...................................... 1
+[default0]:-------------------- end of arguments ---------------------
+[default0]:will use batch size rampup starting from global batch size 2 to global batch size 16 with batch size increments 2 over 1000 samples.
+[default0]:> building GPT2BPETokenizer tokenizer ...
+[default0]: > padded vocab (size: 50257) with 175 dummy tokens (new size: 50432)
+[default0]:DeepSpeed general environment info:
+[default0]:torch install path ............... ['/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch']
+[default0]:torch version .................... 1.13.0
+[default0]:torch cuda version ............... 11.7
+[default0]:torch hip version ................ None
+[default0]:nvcc version ..................... 11.7
+[default0]:deepspeed install path ........... ['/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/deepspeed']
+[default0]:deepspeed info ................... 0.7.5+3432c740, 3432c740, master
+[default0]:deepspeed wheel compiled w. ...... torch 1.13, cuda 11.7
+[default0]:**** Git info for Megatron: git_hash=09a35f5 git_branch=main ****
+[default0]:> initializing torch distributed ...
+[default0]:[2022-10-31 13:44:30,552] [INFO] [comm.py:633:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[default1]:> setting tensorboard ...
+[default0]:> initializing tensor model parallel with size 2
+[default0]:> initializing pipeline model parallel with size 1
+[default0]:> setting random seeds to 42 ...
+[default0]:[2022-10-31 13:44:31,198] [INFO] [checkpointing.py:226:model_parallel_cuda_manual_seed] > initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 2760 and data parallel seed: 42
+[default0]:> compiling dataset index builder ...
+[default0]:make: Entering directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/data'
+[default0]:g++ -O3 -Wall -shared -std=c++11 -fPIC -fdiagnostics-color -I/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/include/python3.9 -I/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/pybind11/include helpers.cpp -o helpers.cpython-39-x86_64-linux-gnu.so
+[default0]:make: Leaving directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/data'
+[default0]:>>> done with dataset index builder. Compilation time: 5.510 seconds
+[default0]:WARNING: constraints for invoking optimized fused softmax kernel are not met. We default back to unfused kernel invocations.
+[default0]:> compiling and loading fused kernels ...
+[default0]:Detected CUDA files, patching ldflags
+[default0]:Emitting ninja build file /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/build/build.ninja...
+[default0]:Building extension module scaled_upper_triang_masked_softmax_cuda...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:[1/3] c++ -MMD -MF scaled_upper_triang_masked_softmax.o.d -DTORCH_EXTENSION_NAME=scaled_upper_triang_masked_softmax_cuda -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/TH -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/THC -isystem /opt/software/pc2/EB-SW/software/CUDA/11.7.0/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/include/python3.9 -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++14 -O3 -c /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/scaled_upper_triang_masked_softmax.cpp -o scaled_upper_triang_masked_softmax.o 
+[default0]:[2/3] /opt/software/pc2/EB-SW/software/CUDA/11.7.0/bin/nvcc  -DTORCH_EXTENSION_NAME=scaled_upper_triang_masked_softmax_cuda -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/TH -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/THC -isystem /opt/software/pc2/EB-SW/software/CUDA/11.7.0/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/include/python3.9 -D_GLIBCXX_USE_CXX11_ABI=0 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr -gencode=arch=compute_80,code=compute_80 -gencode=arch=compute_80,code=sm_80 --compiler-options '-fPIC' -O3 --use_fast_math -U__CUDA_NO_HALF_OPERATORS__ -U__CUDA_NO_HALF_CONVERSIONS__ --expt-relaxed-constexpr --expt-extended-lambda -std=c++14 -c /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/scaled_upper_triang_masked_softmax_cuda.cu -o scaled_upper_triang_masked_softmax_cuda.cuda.o 
+[default0]:[3/3] c++ scaled_upper_triang_masked_softmax.o scaled_upper_triang_masked_softmax_cuda.cuda.o -shared -L/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/lib -lc10 -lc10_cuda -ltorch_cpu -ltorch_cuda_cu -ltorch_cuda_cpp -ltorch -ltorch_python -L/opt/software/pc2/EB-SW/software/CUDA/11.7.0/lib64 -lcudart -o scaled_upper_triang_masked_softmax_cuda.so
+[default0]:
+[default0]:Detected CUDA files, patching ldflags
+[default0]:Emitting ninja build file /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/build/build.ninja...
+[default0]:Building extension module scaled_masked_softmax_cuda...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:[1/3] c++ -MMD -MF scaled_masked_softmax.o.d -DTORCH_EXTENSION_NAME=scaled_masked_softmax_cuda -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/TH -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/THC -isystem /opt/software/pc2/EB-SW/software/CUDA/11.7.0/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/include/python3.9 -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++14 -O3 -c /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/scaled_masked_softmax.cpp -o scaled_masked_softmax.o 
+[default0]:[3/3] c++ scaled_masked_softmax.o scaled_masked_softmax_cuda.cuda.o -shared -L/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/lib -lc10 -lc10_cuda -ltorch_cpu -ltorch_cuda_cu -ltorch_cuda_cpp -ltorch -ltorch_python -L/opt/software/pc2/EB-SW/software/CUDA/11.7.0/lib64 -lcudart -o scaled_masked_softmax_cuda.so
+[default0]:Loading extension module scaled_masked_softmax_cuda...
+[default0]:Detected CUDA files, patching ldflags
+[default0]:Emitting ninja build file /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/build/build.ninja...
+[default0]:Building extension module fused_mix_prec_layer_norm_cuda...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:[1/3] c++ -MMD -MF layer_norm_cuda.o.d -DTORCH_EXTENSION_NAME=fused_mix_prec_layer_norm_cuda -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/TH -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/THC -isystem /opt/software/pc2/EB-SW/software/CUDA/11.7.0/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/include/python3.9 -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++14 -O3 -c /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda.cpp -o layer_norm_cuda.o 
+[default0]:[2/3] /opt/software/pc2/EB-SW/software/CUDA/11.7.0/bin/nvcc  -DTORCH_EXTENSION_NAME=fused_mix_prec_layer_norm_cuda -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/TH -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/THC -isystem /opt/software/pc2/EB-SW/software/CUDA/11.7.0/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/include/python3.9 -D_GLIBCXX_USE_CXX11_ABI=0 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr -gencode=arch=compute_80,code=compute_80 -gencode=arch=compute_80,code=sm_80 --compiler-options '-fPIC' -O3 --use_fast_math -maxrregcount=50 -std=c++14 -c /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu -o layer_norm_cuda_kernel.cuda.o 
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu: In function ‘void cuda_layer_norm(at::Tensor*, at::Tensor*, at::Tensor*, at::Tensor*, int, int, c10::IntList, at::Tensor*, at::Tensor*, double)’:
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:224: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:247: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:272: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:296: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                        ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:359: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:414: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                              ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:119: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:142: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                              ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:167: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:191: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                               ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:258: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                  ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:317: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                             ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:131: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                   ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:154: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                          ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:179: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                   ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:203: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                           ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:274: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                  ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:337: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                 ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:151: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:174: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                              ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:199: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:227: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                   ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:294: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                      ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:353: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                 ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:166: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                      ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:189: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                             ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:214: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                      ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:246: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                      ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:317: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                             ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:706:380: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                            ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu: In function ‘void cuda_layer_norm_gradient(at::Tensor*, at::Tensor*, at::Tensor*, at::Tensor*, int, int, c10::IntList, at::Tensor*, at::Tensor*, double, at::Tensor*, at::Tensor*, at::Tensor*)’:
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:224: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:247: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:272: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:333: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                             ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:389: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                     ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:438: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:489: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:550: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:120: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                        ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:143: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                               ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:168: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                        ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:233: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                         ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:293: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                     ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:342: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                      ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:397: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                             ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:462: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:132: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                    ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:155: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                           ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:180: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                    ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:249: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                         ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:313: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                         ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:362: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                          ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:421: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:490: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:152: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                        ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:175: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                               ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:200: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                        ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:265: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                         ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:325: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                     ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:378: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                          ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:433: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:498: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:167: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:190: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                              ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:215: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                       ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:284: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                            ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:348: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                            ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:405: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:464: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:533: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     DISPATCH_FLOAT_HALF_AND_BFLOAT_INOUT_TYPES(
+[default0]:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu: In instantiation of ‘void HostLayerNormGradient(const V*, const U*, const U*, at::Tensor*, int, int, const V*, const V*, double, T*, V*, V*) [with T = float; U = float; V = float]’:
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:562:   required from here
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:782:97: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     cuComputeGradInput<<<blocks1, threads1, nshared, stream>>>(
+[default0]:                                                                                                 ^                                                                                       
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu: In instantiation of ‘void HostLayerNormGradient(const V*, const U*, const U*, at::Tensor*, int, int, const V*, const V*, double, T*, V*, V*) [with T = float; U = float; V = c10::Half]’:
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:474:   required from here
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:782:97: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     cuComputeGradInput<<<blocks1, threads1, nshared, stream>>>(
+[default0]:                                                                                                 ^                                                                                       
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu: In instantiation of ‘void HostLayerNormGradient(const V*, const U*, const U*, at::Tensor*, int, int, const V*, const V*, double, T*, V*, V*) [with T = float; U = float; V = c10::BFloat16]’:
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:502:   required from here
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:782:97: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     cuComputeGradInput<<<blocks1, threads1, nshared, stream>>>(
+[default0]:                                                                                                 ^                                                                                       
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu: In instantiation of ‘void HostLayerNormGradient(const V*, const U*, const U*, at::Tensor*, int, int, const V*, const V*, double, T*, V*, V*) [with T = c10::Half; U = float; V = c10::Half]’:
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:510:   required from here
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:782:97: warning: ‘T* at::Tensor::data() const [with T = c10::Half]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     cuComputeGradInput<<<blocks1, threads1, nshared, stream>>>(
+[default0]:                                                                                                 ^                                                                                       
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu: In instantiation of ‘void HostLayerNormGradient(const V*, const U*, const U*, at::Tensor*, int, int, const V*, const V*, double, T*, V*, V*) [with T = c10::BFloat16; U = float; V = c10::BFloat16]’:
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:814:545:   required from here
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:751:106: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputePartGradGammaBeta<<<blocks2, threads2, nshared2, stream>>>(
+[default0]:                                                                                                          ^                                                                                                                                               
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:764:102: warning: ‘T* at::Tensor::data() const [with T = float]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:       cuComputeGradGammaBeta<<<blocks3, threads3, nshared3, stream>>>(
+[default0]:                                                                                                      ^                                                                                                                    
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/fused_kernels/layer_norm_cuda_kernel.cu:782:97: warning: ‘T* at::Tensor::data() const [with T = c10::BFloat16]’ is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+[default0]:     cuComputeGradInput<<<blocks1, threads1, nshared, stream>>>(
+[default0]:                                                                                                 ^                                                                                       
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:238:1: note: declared here
+[default0]:   T * data() const {
+[default0]: ^ ~~
+[default0]:[3/3] c++ layer_norm_cuda.o layer_norm_cuda_kernel.cuda.o -shared -L/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/lib -lc10 -lc10_cuda -ltorch_cpu -ltorch_cuda_cu -ltorch_cuda_cpp -ltorch -ltorch_python -L/opt/software/pc2/EB-SW/software/CUDA/11.7.0/lib64 -lcudart -o fused_mix_prec_layer_norm_cuda.so
+[default0]:Loading extension module fused_mix_prec_layer_norm_cuda...
+[default0]:>>> done with compiling and loading fused kernels. Compilation time: 246.495 seconds
+[default0]:time to initialize megatron (seconds): 299.813
+[default0]:[after megatron is initialized] datetime: 2022-10-31 13:48:43 
+[default0]:building GPT model ...
+[default0]:[2022-10-31 13:48:43,972] [INFO] [utils.py:827:see_memory_usage] Before Building Model
+[default0]:[2022-10-31 13:48:43,974] [INFO] [utils.py:828:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2022-10-31 13:48:43,974] [INFO] [utils.py:836:see_memory_usage] CPU Virtual Memory:  used = 22.07 GB, percent = 4.4%
+[default0]:SEED_LAYERS=False BASE_SEED=1234 SEED_FN=None
+[default0]:Using topology: {ProcessCoord(pipe=0, data=0, model=0): 0, ProcessCoord(pipe=0, data=0, model=1): 1}
+[default0]:[2022-10-31 13:48:44,009] [INFO] [module.py:366:_partition_layers] Partitioning pipeline stages with method type:transformer
+[default0]:stage=0 layers=9
+[default0]:     0: _to_float16
+[default0]:     1: EmbeddingPipe
+[default0]:     2: <lambda>
+[default0]:     3: ParallelTransformerLayerPipe
+[default0]:     4: ParallelTransformerLayerPipe
+[default0]:     5: undo
+[default0]:     6: MixedFusedLayerNorm
+[default0]:     7: EmbeddingPipe
+[default0]:     8: float16_to_fp32
+[default0]:  loss: CrossEntropy
+[default1]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py:429: UserWarning: torch.distributed.distributed_c10d._get_global_rank is deprecated please use torch.distributed.distributed_c10d.get_global_rank instead
+[default1]:  warnings.warn(
+[default1]:Using /upb/departments/pc2/users/n/nikit/.cache/torch_extensions/py39_cu117 as PyTorch extensions root...
+[default1]:Creating extension directory /upb/departments/pc2/users/n/nikit/.cache/torch_extensions/py39_cu117/utils...
+[default0]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py:429: UserWarning: torch.distributed.distributed_c10d._get_global_rank is deprecated please use torch.distributed.distributed_c10d.get_global_rank instead
+[default0]:  warnings.warn(
+[default0]:Using /upb/departments/pc2/users/n/nikit/.cache/torch_extensions/py39_cu117 as PyTorch extensions root...
+[default0]:[2022-10-31 13:48:45,224] [INFO] [utils.py:827:see_memory_usage] After Building Model
+[default0]:[2022-10-31 13:48:45,225] [INFO] [utils.py:828:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2022-10-31 13:48:45,225] [INFO] [utils.py:836:see_memory_usage] CPU Virtual Memory:  used = 22.08 GB, percent = 4.4%
+[default0]:setting training iterations to 748
+[default0]:> learning rate decay style: cosine
+[default0]:DeepSpeed is enabled.
+[default0]:[2022-10-31 13:48:45,226] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed info: version=0.7.5+3432c740, git-hash=3432c740, git-branch=master
+[default0]:[2022-10-31 13:48:45,282] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[default0]:[2022-10-31 13:48:45,282] [INFO] [logging.py:68:log_dist] [Rank 0] Removing param_group that has no 'params' in the client Optimizer
+[default0]:[2022-10-31 13:48:45,282] [INFO] [logging.py:68:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[default0]:[2022-10-31 13:48:45,282] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[default0]:[2022-10-31 13:48:45,282] [INFO] [utils.py:52:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'apex.optimizers.fused_adam.FusedAdam'>
+[default0]:[2022-10-31 13:48:45,283] [INFO] [logging.py:68:log_dist] [Rank 0] Creating fp16 ZeRO stage 1 optimizer
+[default0]:[2022-10-31 13:48:45,283] [INFO] [stage_1_and_2.py:140:__init__] Reduce bucket size 500000000
+[default0]:[2022-10-31 13:48:45,283] [INFO] [stage_1_and_2.py:141:__init__] Allgather bucket size 500000000
+[default0]:[2022-10-31 13:48:45,283] [INFO] [stage_1_and_2.py:142:__init__] CPU Offload: False
+[default0]:[2022-10-31 13:48:45,283] [INFO] [stage_1_and_2.py:143:__init__] Round robin gradient partitioning: False
+[default1]:Emitting ninja build file /upb/departments/pc2/users/n/nikit/.cache/torch_extensions/py39_cu117/utils/build.ninja...
+[default1]:Building extension module utils...
+[default1]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default1]:[1/2] c++ -MMD -MF flatten_unflatten.o.d -DTORCH_EXTENSION_NAME=utils -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/TH -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/include/THC -isystem /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/include/python3.9 -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++14 -c /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/deepspeed/ops/csrc/utils/flatten_unflatten.cpp -o flatten_unflatten.o 
+[default1]:[2/2] c++ flatten_unflatten.o -shared -L/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/lib -lc10 -ltorch_cpu -ltorch -ltorch_python -o utils.so
+[default1]:Loading extension module utils...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 23.21431803703308 seconds
+[default1]:Time to load utils op: 23.255520820617676 seconds
+[default0]:Rank: 0 partition count [1, 1, 1] and sizes[(206080, False), (512, False), (168, False)] 
+[default1]:Rank: 1 partition count [1, 1, 1] and sizes[(206080, False), (512, False), (168, False)] 
+[default0]:[2022-10-31 13:49:10,368] [INFO] [utils.py:827:see_memory_usage] Before initializing optimizer states
+[default0]:[2022-10-31 13:49:10,368] [INFO] [utils.py:828:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2022-10-31 13:49:10,369] [INFO] [utils.py:836:see_memory_usage] CPU Virtual Memory:  used = 22.16 GB, percent = 4.4%
+[default0]:[2022-10-31 13:49:10,696] [INFO] [utils.py:827:see_memory_usage] After initializing optimizer states
+[default0]:[2022-10-31 13:49:10,697] [INFO] [utils.py:828:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.01 GB         Max_CA 0 GB 
+[default0]:[2022-10-31 13:49:10,697] [INFO] [utils.py:836:see_memory_usage] CPU Virtual Memory:  used = 22.16 GB, percent = 4.4%
+[default0]:[2022-10-31 13:49:10,697] [INFO] [stage_1_and_2.py:523:__init__] optimizer state initialized
+[default0]:[2022-10-31 13:49:10,733] [INFO] [utils.py:827:see_memory_usage] After initializing ZeRO optimizer
+[default0]:[2022-10-31 13:49:10,733] [INFO] [utils.py:828:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.01 GB         Max_CA 0 GB 
+[default0]:[2022-10-31 13:49:10,733] [INFO] [utils.py:836:see_memory_usage] CPU Virtual Memory:  used = 22.16 GB, percent = 4.4%
+[default0]:[2022-10-31 13:49:10,804] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed Final Optimizer = FusedAdam
+[default0]:[2022-10-31 13:49:10,804] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed using client LR scheduler
+[default0]:[2022-10-31 13:49:10,804] [INFO] [logging.py:68:log_dist] [Rank 0] DeepSpeed LR Scheduler = <megatron.learning_rates.AnnealingLR object at 0x14e087cfb6d0>
+[default0]:[2022-10-31 13:49:10,804] [INFO] [logging.py:68:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0, 0.0], mom=[(0.9, 0.95), (0.9, 0.95), (0.9, 0.95)]
+[default0]:[2022-10-31 13:49:10,804] [INFO] [config.py:1007:print] DeepSpeedEngine configuration:
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   activation_checkpointing_config  {
+[default0]:    "partition_activations": false, 
+[default0]:    "contiguous_memory_optimization": false, 
+[default0]:    "cpu_checkpointing": false, 
+[default0]:    "number_checkpoints": null, 
+[default0]:    "synchronize_checkpoint_boundary": false, 
+[default0]:    "profile": false
+[default0]:}
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   amp_enabled .................. False
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   amp_params ................... False
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   autotuning_config ............ {
+[default0]:    "enabled": false, 
+[default0]:    "start_step": null, 
+[default0]:    "end_step": null, 
+[default0]:    "metric_path": null, 
+[default0]:    "arg_mappings": null, 
+[default0]:    "metric": "throughput", 
+[default0]:    "model_info": null, 
+[default0]:    "results_dir": "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/autotuning_results", 
+[default0]:    "exps_dir": "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/autotuning_exps", 
+[default0]:    "overwrite": true, 
+[default0]:    "fast": true, 
+[default0]:    "start_profile_step": 3, 
+[default0]:    "end_profile_step": 5, 
+[default0]:    "tuner_type": "gridsearch", 
+[default0]:    "tuner_early_stopping": 5, 
+[default0]:    "tuner_num_trials": 50, 
+[default0]:    "model_info_path": null, 
+[default0]:    "mp_size": 1, 
+[default0]:    "max_train_batch_size": null, 
+[default0]:    "min_train_batch_size": 1, 
+[default0]:    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+[default0]:    "min_train_micro_batch_size_per_gpu": 1, 
+[default0]:    "num_tuning_micro_batch_sizes": 3
+[default0]:}
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   bfloat16_enabled ............. False
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   checkpoint_parallel_write_pipeline  False
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   checkpoint_tag_validation_enabled  True
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   checkpoint_tag_validation_fail  False
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x14e087d4b9d0>
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   communication_data_type ...... None
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[default0]:[2022-10-31 13:49:10,805] [INFO] [config.py:1011:print]   curriculum_enabled ........... False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   curriculum_params ............ False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   dataloader_drop_last ......... False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   disable_allgather ............ False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   dump_state ................... False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   dynamic_loss_scale_args ...... {'init_scale': 4096, 'scale_window': 500, 'delayed_shift': 2, 'min_scale': 1}
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_enabled ........... False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_gas_boundary_resolution  1
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_layer_num ......... 0
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_max_iter .......... 100
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_stability ......... 1e-06
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_tol ............... 0.01
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   eigenvalue_verbose ........... False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   elasticity_enabled ........... False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   flops_profiler_config ........ {
+[default0]:    "enabled": false, 
+[default0]:    "profile_step": 1, 
+[default0]:    "module_depth": -1, 
+[default0]:    "top_modules": 1, 
+[default0]:    "detailed": true, 
+[default0]:    "output_file": null
+[default0]:}
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   fp16_auto_cast ............... False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   fp16_enabled ................. True
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   fp16_master_weights_and_gradients  False
+[default0]:[2022-10-31 13:49:10,806] [INFO] [config.py:1011:print]   global_rank .................. 0
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   gradient_accumulation_steps .. 16
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   gradient_clipping ............ 1.0
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   gradient_predivide_factor .... 1.0
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   initial_dynamic_scale ........ 4096
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   load_universal_checkpoint .... False
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   loss_scale ................... 0
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   memory_breakdown ............. False
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   monitor_config ............... <deepspeed.monitor.config.DeepSpeedMonitorConfig object at 0x14e087d4b2e0>
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   nebula_config ................ {
+[default0]:    "enabled": false, 
+[default0]:    "persistent_storage_path": null, 
+[default0]:    "persistent_time_interval": 100, 
+[default0]:    "num_of_version_in_retention": 2, 
+[default0]:    "enable_nebula_load": true, 
+[default0]:    "load_path": null
+[default0]:}
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   optimizer_legacy_fusion ...... False
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   optimizer_name ............... None
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   optimizer_params ............. None
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0}
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   pld_enabled .................. False
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   pld_params ................... False
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   prescale_gradients ........... False
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   scheduler_name ............... None
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   scheduler_params ............. None
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   sparse_attention ............. None
+[default0]:[2022-10-31 13:49:10,807] [INFO] [config.py:1011:print]   sparse_gradients_enabled ..... False
+[default0]:[2022-10-31 13:49:10,808] [INFO] [config.py:1011:print]   steps_per_print .............. 2000
+[default0]:[2022-10-31 13:49:10,808] [INFO] [config.py:1011:print]   train_batch_size ............. 16
+[default0]:[2022-10-31 13:49:10,808] [INFO] [config.py:1011:print]   train_micro_batch_size_per_gpu  1
+[default0]:[2022-10-31 13:49:10,808] [INFO] [config.py:1011:print]   use_node_local_storage ....... False
+[default0]:[2022-10-31 13:49:10,808] [INFO] [config.py:1011:print]   wall_clock_breakdown ......... False
+[default0]:[2022-10-31 13:49:10,808] [INFO] [config.py:1011:print]   world_size ................... 1
+[default0]:[2022-10-31 13:49:10,808] [INFO] [config.py:1011:print]   zero_allow_untested_optimizer  False
+[default1]:Using /upb/departments/pc2/users/n/nikit/.cache/torch_extensions/py39_cu117 as PyTorch extensions root...
+[default1]:Time to load utils op: 0.05940675735473633 seconds
+[default1]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default1]:Loading extension module utils...
+[default0]:Using /upb/departments/pc2/users/n/nikit/.cache/torch_extensions/py39_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:[2022-10-31 13:49:11,001] [INFO] [config.py:1011:print]   zero_config .................. stage=1 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=False load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False
+[default0]:[2022-10-31 13:49:11,001] [INFO] [config.py:1011:print]   zero_enabled ................. True
+[default0]:[2022-10-31 13:49:11,001] [INFO] [config.py:1011:print]   zero_optimization_stage ...... 1
+[default0]:[2022-10-31 13:49:11,001] [INFO] [config.py:996:print_user_config]   json = {
+[default0]:    "train_micro_batch_size_per_gpu": 1, 
+[default0]:    "train_batch_size": 16, 
+[default0]:    "gradient_clipping": 1.0, 
+[default0]:    "zero_optimization": {
+[default0]:        "stage": 1
+[default0]:    }, 
+[default0]:    "fp16": {
+[default0]:        "enabled": true, 
+[default0]:        "loss_scale": 0, 
+[default0]:        "loss_scale_window": 500, 
+[default0]:        "hysteresis": 2, 
+[default0]:        "min_loss_scale": 1, 
+[default0]:        "initial_scale_power": 12
+[default0]:    }, 
+[default0]:    "steps_per_print": 2.000000e+03, 
+[default0]:    "wall_clock_breakdown": false
+[default0]:}
+[default0]:Time to load utils op: 0.0009715557098388672 seconds
+[default0]:[2022-10-31 13:49:11,003] [INFO] [engine.py:87:__init__] CONFIG: micro_batches=16 micro_batch_size=1
+[default0]:[2022-10-31 13:49:11,387] [INFO] [engine.py:145:__init__] RANK=0 STAGE=0 LAYERS=9 [0, 9) STAGE_PARAMS=206760 (0.207M) TOTAL_PARAMS=413520 (0.414M) UNIQUE_PARAMS=413520 (0.414M)
+[default0]:[2022-10-31 13:49:11,392] [WARNING] [engine.py:2585:load_checkpoint] Unable to find latest file at checkpoints/gpt2/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:WARNING: could not find the metadata file checkpoints/gpt2 
+[default0]:    will not load any checkpoints and will start from random
+[default1]:[2022-10-31 13:49:11,387] [INFO] [engine.py:145:__init__] RANK=1 STAGE=0 LAYERS=9 [0, 9) STAGE_PARAMS=206760 (0.207M) TOTAL_PARAMS=413520 (0.414M) UNIQUE_PARAMS=413520 (0.414M)
+[default1]:[2022-10-31 13:49:11,392] [WARNING] [engine.py:2585:load_checkpoint] Unable to find latest file at checkpoints/gpt2/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default1]:time (ms) | load-checkpoint: 0.87
+[default0]:estimated model parameters: 0.00041352
+[default0]:estimated model parameters without embeddings: 1.872e-06
+[default0]:[after model, optimizer, and learning rate scheduler are built] datetime: 2022-10-31 13:49:12 
+[default0]:> building train, validation, and test datasets ...
+[default0]: > datasets target sizes (minimum size):
+[default0]:    train:      10000
+[default0]:    validation: 1280
+[default0]:    test:       160
+[default0]:> building train, validation, and test datasets for GPT ...
+[default0]: > building dataset index ...
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed/megatron/utils.py:349: UserWarning: Parameter count with the embeddings will be inaccurate with PP > 1, as the first and last stage hold several copies of the embeddings
+[default0]:  warnings.warn("Parameter count with the embeddings will be inaccurate with PP > 1, as the first and last stage hold several copies of the embeddings")
+[default0]:    reading sizes...
+[default0]:    reading pointers...
+[default0]:    reading document index...
+[default0]:    creating numpy buffer of mmap...
+[default0]:    creating memory view of numpy buffer...
+[default0]: > finished creating indexed dataset in 0.188409 seconds
+[default0]:    number of documents: 10000
+[default0]: > dataset split:
+[default0]:    train:
+[default0]:     document indices in [0, 9690) total of 9690 documents
+[default0]:    validation:
+[default0]:     document indices in [9690, 9990) total of 300 documents
+[default0]:    test:
+[default0]:     document indices in [9990, 10000) total of 10 documents
+[default0]: > WARNING: could not find index map files, building the indices on rank 0 ...
+[default0]: > only one epoch required, setting separate_last_epoch to False
+[default0]: > elasped time to build and save doc-idx mapping (seconds): 0.003714
+[default0]:    using:
+[default0]:     number of documents:       9690
+[default0]:     number of epochs:          1
+[default0]:     sequence length:           512
+[default0]:     total number of samples:   56334
+[default0]: > elasped time to build and save sample-idx mapping (seconds): 0.013757
+[default0]: > building shuffle index with split [0, 56334) and [56334, 56334) ...
+[default0]: > elasped time to build and save shuffle-idx mapping (seconds): 0.002480
+[default0]: > loading doc-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_train_indexmap_10000ns_512sl_42s_doc_idx.npy
+[default0]: > loading sample-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_train_indexmap_10000ns_512sl_42s_sample_idx.npy
+[default0]: > loading shuffle-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_train_indexmap_10000ns_512sl_42s_shuffle_idx.npy
+[default0]:    loaded indexed file in 0.002 seconds
+[default0]:    total number of samples: 56335
+[default0]:    total number of epochs: 1
+[default0]: > WARNING: could not find index map files, building the indices on rank 0 ...
+[default0]: > only one epoch required, setting separate_last_epoch to False
+[default0]: > elasped time to build and save doc-idx mapping (seconds): 0.001593
+[default0]:    using:
+[default0]:     number of documents:       300
+[default0]:     number of epochs:          1
+[default0]:     sequence length:           512
+[default0]:     total number of samples:   1829
+[default0]: > elasped time to build and save sample-idx mapping (seconds): 0.001613
+[default0]: > building shuffle index with split [0, 1829) and [1829, 1829) ...
+[default0]: > elasped time to build and save shuffle-idx mapping (seconds): 0.001234
+[default0]: > loading doc-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_valid_indexmap_1280ns_512sl_42s_doc_idx.npy
+[default0]: > loading sample-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_valid_indexmap_1280ns_512sl_42s_sample_idx.npy
+[default0]: > loading shuffle-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_valid_indexmap_1280ns_512sl_42s_shuffle_idx.npy
+[default0]:    loaded indexed file in 0.001 seconds
+[default0]:    total number of samples: 1830
+[default0]:    total number of epochs: 1
+[default0]: > WARNING: could not find index map files, building the indices on rank 0 ...
+[default0]: > last epoch number of samples (33) is smaller than 95.0% of number of samples per epoch (63), setting separate_last_epoch to True
+[default0]: > elasped time to build and save doc-idx mapping (seconds): 0.001374
+[default0]:    using:
+[default0]:     number of documents:       10
+[default0]:     number of epochs:          3
+[default0]:     sequence length:           512
+[default0]:     total number of samples:   190
+[default0]: > elasped time to build and save sample-idx mapping (seconds): 0.001575
+[default0]: > building shuffle index with split [0, 127) and [127, 190) ...
+[default0]: > elasped time to build and save shuffle-idx mapping (seconds): 0.001222
+[default0]: > loading doc-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_test_indexmap_160ns_512sl_42s_doc_idx.npy
+[default0]: > loading sample-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_test_indexmap_160ns_512sl_42s_sample_idx.npy
+[default0]: > loading shuffle-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_test_indexmap_160ns_512sl_42s_shuffle_idx.npy
+[default0]:    loaded indexed file in 0.002 seconds
+[default0]:    total number of samples: 191
+[default0]:    total number of epochs: 3
+[default0]:> finished creating GPT datasets ...
+[default1]:time (ms) | model-and-optimizer-setup: 28277.46 | train/valid/test-data-iterators-setup: 681.26
+[default1]:[001-000] 0.0004B / 0.0000B
+[default0]:[after dataloaders are built] datetime: 2022-10-31 13:49:13 
+[default0]:done with setup ...
+[default0]:training ...
+[default0]:Number of parameters: [tensor rank - pipeline rank] w/ and w/o embeddings:
+[default0]:[000-000] 0.0004B / 0.0000B
+[default0]:[before the start of training step] datetime: 2022-10-31 13:49:13 
+[default0]:[2022-10-31 13:49:14,870] [INFO] [checkpointing.py:547:forward] Activation Checkpointing Information
+[default0]:[2022-10-31 13:49:14,870] [INFO] [checkpointing.py:548:forward] ----Partition Activations True, CPU CHECKPOINTING False
+[default0]:[2022-10-31 13:49:14,870] [INFO] [checkpointing.py:551:forward] ----contiguous Memory Checkpointing False with 2 total layers
+[default0]:[2022-10-31 13:49:14,870] [INFO] [checkpointing.py:554:forward] ----Synchronization False
+[default0]:[2022-10-31 13:49:14,870] [INFO] [checkpointing.py:555:forward] ----Profiling time in checkpointing False
+[default1]:/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dsmt/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py:429: UserWarning: torch.distributed.distributed_c10d._get_global_rank is deprecated please use torch.distributed.distributed_c10d.get_global_rank instead
+[default1]:  warnings.warn(
+[default1]: iteration       10/     748 | consumed samples:           20 | consumed tokens:        10240 | elapsed time per iteration (s): 3.34 | learning rate: 1.000E-06 | global batch size:     2 | lm loss: 1.082956E+01 | loss scale: 4096.0 | grad norm: 0.466 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.599 | TFLOPs: 0.00 |
+[default1]:[Rank 1] (after 10 iterations) memory (MB) | allocated: 103.54443359375 | max allocated: 1132.12548828125 | reserved: 2044.0 | max reserved: 2044.0
+[default0]:
+[default1]: iteration       20/     748 | consumed samples:           40 | consumed tokens:        20480 | elapsed time per iteration (s): 0.04 | learning rate: 1.000E-06 | global batch size:     2 | lm loss: 1.082932E+01 | loss scale: 4096.0 | grad norm: 0.256 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 48.363 | TFLOPs: 0.03 |
+[default1]: iteration       30/     748 | consumed samples:           60 | consumed tokens:        30720 | elapsed time per iteration (s): 0.04 | learning rate: 1.000E-06 | global batch size:     2 | lm loss: 1.082768E+01 | loss scale: 4096.0 | grad norm: 0.435 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 48.724 | TFLOPs: 0.03 |
+[default1]: iteration       40/     748 | consumed samples:           80 | consumed tokens:        40960 | elapsed time per iteration (s): 0.04 | learning rate: 1.000E-06 | global batch size:     2 | lm loss: 1.082951E+01 | loss scale: 4096.0 | grad norm: 0.349 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 56.451 | TFLOPs: 0.04 |
+[default1]: iteration       50/     748 | consumed samples:          100 | consumed tokens:        51200 | elapsed time per iteration (s): 0.04 | learning rate: 1.000E-06 | global batch size:     2 | lm loss: 1.082865E+01 | loss scale: 4096.0 | grad norm: 0.401 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 53.569 | TFLOPs: 0.04 |
+[default1]:[2022-10-31 13:49:48,305] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_01-model_01-model_states.pt...
+[default0]:saving checkpoint at iteration      50 to checkpoints/gpt2
+[default0]:[2022-10-31 13:49:48,295] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step50 is begin to save!
+[default0]:[2022-10-31 13:49:48,305] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_01-model_00-model_states.pt...
+[default1]:[2022-10-31 13:49:48,598] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_01-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:48,598] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_03-model_01-model_states.pt...
+[default1]:[2022-10-31 13:49:48,600] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_03-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:48,600] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_04-model_01-model_states.pt...
+[default1]:[2022-10-31 13:49:48,601] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_04-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:48,601] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_06-model_01-model_states.pt...
+[default1]:[2022-10-31 13:49:48,602] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_06-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:48,602] [INFO] [logging.py:68:log_dist] [Rank 1] Saving model checkpoint: checkpoints/gpt2/global_step50/mp_rank_01_model_states.pt
+[default1]:[2022-10-31 13:49:48,602] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/mp_rank_01_model_states.pt...
+[default1]:[2022-10-31 13:49:48,606] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/mp_rank_01_model_states.pt.
+[default1]:[2022-10-31 13:49:48,606] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/zero_pp_rank_0_mp_rank_01_optim_states.pt...
+[default1]:[2022-10-31 13:49:48,609] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/zero_pp_rank_0_mp_rank_01_optim_states.pt.
+[default1]:[2022-10-31 13:49:48,609] [INFO] [engine.py:3217:_save_zero_checkpoint] zero checkpoint saved checkpoints/gpt2/global_step50/zero_pp_rank_0_mp_rank_01_optim_states.pt
+[default1]:[2022-10-31 13:49:48,609] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step50 is ready now!
+[default1]:time (ms) | save-checkpoint: 339.11
+[default0]:[2022-10-31 13:49:48,598] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_01-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:48,598] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_03-model_00-model_states.pt...
+[default0]:[2022-10-31 13:49:48,600] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_03-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:48,600] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_04-model_00-model_states.pt...
+[default0]:[2022-10-31 13:49:48,602] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_04-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:48,602] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/layer_06-model_00-model_states.pt...
+[default0]:[2022-10-31 13:49:48,603] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/layer_06-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:48,604] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: checkpoints/gpt2/global_step50/mp_rank_00_model_states.pt
+[default0]:[2022-10-31 13:49:48,604] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/mp_rank_00_model_states.pt...
+[default0]:[2022-10-31 13:49:48,606] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/mp_rank_00_model_states.pt.
+[default0]:[2022-10-31 13:49:48,606] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step50/zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[default0]:[2022-10-31 13:49:48,610] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step50/zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[default0]:[2022-10-31 13:49:48,619] [INFO] [engine.py:3217:_save_zero_checkpoint] zero checkpoint saved checkpoints/gpt2/global_step50/zero_pp_rank_0_mp_rank_00_optim_states.pt
+[default0]:[2022-10-31 13:49:48,619] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step50 is ready now!
+[default0]:  successfully saved checkpoint at iteration      50 to checkpoints/gpt2
+[default1]: iteration       60/     748 | consumed samples:          120 | consumed tokens:        61440 | elapsed time per iteration (s): 0.08 | learning rate: 1.000E-06 | global batch size:     2 | lm loss: 1.082889E+01 | loss scale: 4096.0 | grad norm: 0.367 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 25.371 | TFLOPs: 0.02 |
+[default1]: iteration       70/     748 | consumed samples:          140 | consumed tokens:        71680 | elapsed time per iteration (s): 0.03 | learning rate: 1.000E-06 | global batch size:     2 | lm loss: 1.082878E+01 | loss scale: 4096.0 | grad norm: 0.318 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 58.430 | TFLOPs: 0.04 |
+[default1]: iteration       80/     748 | consumed samples:          176 | consumed tokens:        90112 | elapsed time per iteration (s): 0.06 | learning rate: 1.000E-06 | global batch size:     4 | lm loss: 1.082929E+01 | loss scale: 4096.0 | grad norm: 0.394 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 67.164 | TFLOPs: 0.04 |
+[default1]: iteration       90/     748 | consumed samples:          216 | consumed tokens:       110592 | elapsed time per iteration (s): 0.07 | learning rate: 1.000E-06 | global batch size:     4 | lm loss: 1.082911E+01 | loss scale: 4096.0 | grad norm: 0.343 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 61.244 | TFLOPs: 0.04 |
+[default1]: iteration      100/     748 | consumed samples:          256 | consumed tokens:       131072 | elapsed time per iteration (s): 0.05 | learning rate: 1.000E-06 | global batch size:     4 | lm loss: 1.082853E+01 | loss scale: 4096.0 | grad norm: 0.362 | num zeros: 0.0 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 73.678 | TFLOPs: 0.05 |
+[default1]:-----------------------------------------------------------------------------------------
+[default1]:valid loss at iteration 100 | lm loss value: 1.082925E+01 | lm loss PPL: 5.047600E+04 | 
+[default1]:-----------------------------------------------------------------------------------------
+[default1]:[2022-10-31 13:49:51,390] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_01-model_01-model_states.pt...
+[default1]:[2022-10-31 13:49:51,391] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_01-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:51,392] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_03-model_01-model_states.pt...
+[default1]:[2022-10-31 13:49:51,393] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_03-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:51,393] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_04-model_01-model_states.pt...
+[default1]:[2022-10-31 13:49:51,395] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_04-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:51,395] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_06-model_01-model_states.pt...
+[default1]:[2022-10-31 13:49:51,396] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_06-model_01-model_states.pt.
+[default1]:[2022-10-31 13:49:51,396] [INFO] [logging.py:68:log_dist] [Rank 1] Saving model checkpoint: checkpoints/gpt2/global_step100/mp_rank_01_model_states.pt
+[default1]:[2022-10-31 13:49:51,396] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/mp_rank_01_model_states.pt...
+[default1]:[2022-10-31 13:49:51,398] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/mp_rank_01_model_states.pt.
+[default1]:[2022-10-31 13:49:51,399] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/zero_pp_rank_0_mp_rank_01_optim_states.pt...
+[default1]:[2022-10-31 13:49:51,403] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/zero_pp_rank_0_mp_rank_01_optim_states.pt.
+[default1]:[2022-10-31 13:49:51,403] [INFO] [engine.py:3217:_save_zero_checkpoint] zero checkpoint saved checkpoints/gpt2/global_step100/zero_pp_rank_0_mp_rank_01_optim_states.pt
+[default1]:[2022-10-31 13:49:51,403] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step100 is ready now!
+[default1]:time (ms) | save-checkpoint: 21.01
+[default0]:saving checkpoint at iteration     100 to checkpoints/gpt2
+[default0]:[2022-10-31 13:49:51,388] [INFO] [logging.py:68:log_dist] [Rank 0] [Torch] Checkpoint global_step100 is begin to save!
+[default0]:[2022-10-31 13:49:51,390] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_01-model_00-model_states.pt...
+[default0]:[2022-10-31 13:49:51,392] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_01-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:51,392] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_03-model_00-model_states.pt...
+[default0]:[2022-10-31 13:49:51,394] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_03-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:51,394] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_04-model_00-model_states.pt...
+[default0]:[2022-10-31 13:49:51,396] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_04-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:51,396] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/layer_06-model_00-model_states.pt...
+[default0]:[2022-10-31 13:49:51,397] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/layer_06-model_00-model_states.pt.
+[default0]:[2022-10-31 13:49:51,397] [INFO] [logging.py:68:log_dist] [Rank 0] Saving model checkpoint: checkpoints/gpt2/global_step100/mp_rank_00_model_states.pt
+[default0]:[2022-10-31 13:49:51,397] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/mp_rank_00_model_states.pt...
+[default0]:[2022-10-31 13:49:51,399] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/mp_rank_00_model_states.pt.
+[default0]:[2022-10-31 13:49:51,399] [INFO] [torch_checkpoint_engine.py:15:save] [Torch] Saving checkpoints/gpt2/global_step100/zero_pp_rank_0_mp_rank_00_optim_states.pt...
+[default0]:[2022-10-31 13:49:51,404] [INFO] [torch_checkpoint_engine.py:17:save] [Torch] Saved checkpoints/gpt2/global_step100/zero_pp_rank_0_mp_rank_00_optim_states.pt.
+[default0]:[2022-10-31 13:49:51,406] [INFO] [engine.py:3217:_save_zero_checkpoint] zero checkpoint saved checkpoints/gpt2/global_step100/zero_pp_rank_0_mp_rank_00_optim_states.pt
+[default0]:[2022-10-31 13:49:51,406] [INFO] [torch_checkpoint_engine.py:27:commit] [Torch] Checkpoint global_step100 is ready now!
+[default0]:  successfully saved checkpoint at iteration     100 to checkpoints/gpt2
+[default0]:[exiting program at iteration 100] datetime: 2022-10-31 13:49:51 

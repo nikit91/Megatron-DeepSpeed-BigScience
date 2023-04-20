@@ -1,0 +1,465 @@
+cpu-bind=MASK - n2gpu1212, task  0  0 [334849]: mask |-----BBB|BBBBB---||--------|--------||--------|--------||--------|--------||||-----BBB|BBBBB---||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1212, task  0  0 [334912]: mask |-----BBB|BBBBB---||--------|--------||--------|--------||--------|--------||||-----BBB|BBBBB---||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1213, task  1  0 [2042858]: mask |BBBBBBBB|--------||--------|--------||--------|--------||--------|--------||||BBBBBBBB|--------||--------|--------||--------|--------||--------|--------|  set
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+master_addr is only used for static rdzv_backend and when rdzv_endpoint is not specified.
+[default0]:pretrain_gpt.py main
+[default0]:pretrain_gpt.py main
+[default0]:using world size: 2, data-parallel-size: 1, tensor-model-parallel size: 2, pipeline-model-parallel size: 1 
+[default0]:using torch.float16 for parameters ...
+[default0]:------------------------ arguments ------------------------
+[default0]:  abort_on_unmet_fused_kernel_constraints ......... False
+[default0]:  accumulate_allreduce_grads_in_fp32 .............. False
+[default0]:  adam_beta1 ...................................... 0.9
+[default0]:  adam_beta2 ...................................... 0.95
+[default0]:  adam_eps ........................................ 1e-08
+[default0]:  adlr_autoresume ................................. False
+[default0]:  adlr_autoresume_interval ........................ 1000
+[default0]:  apply_query_key_layer_scaling ................... True
+[default0]:  apply_residual_connection_post_layernorm ........ False
+[default0]:  attention_dropout ............................... 0.1
+[default0]:  attention_softmax_in_fp32 ....................... False
+[default0]:  bert_binary_head ................................ True
+[default0]:  bert_load ....................................... None
+[default0]:  bf16 ............................................ False
+[default0]:  bias_dropout_fusion ............................. True
+[default0]:  bias_gelu_fusion ................................ True
+[default0]:  biencoder_projection_dim ........................ 0
+[default0]:  biencoder_shared_query_context_model ............ False
+[default0]:  block_data_path ................................. None
+[default0]:  checkpoint_activations .......................... True
+[default0]:  checkpoint_in_cpu ............................... False
+[default0]:  checkpoint_num_layers ........................... 1
+[default0]:  clip_grad ....................................... 1.0
+[default0]:  codecarbon_dir .................................. None
+[default0]:  consumed_train_samples .......................... 0
+[default0]:  consumed_train_tokens ........................... 0
+[default0]:  consumed_valid_samples .......................... 0
+[default0]:  contigious_checkpointing ........................ False
+[default0]:  cpu_optimizer ................................... False
+[default0]:  cpu_torch_adam .................................. False
+[default0]:  curriculum_learning ............................. False
+[default0]:  data_impl ....................................... infer
+[default0]:  data_parallel_size .............................. 1
+[default0]:  data_path ....................................... ['data/meg-gpt2-oscar-en-10k_text_document']
+[default0]:  dataloader_type ................................. single
+[default0]:  DDP_impl ........................................ local
+[default0]:  decoder_seq_length .............................. None
+[default0]:  deepscale ....................................... False
+[default0]:  deepscale_config ................................ None
+[default0]:  deepspeed ....................................... True
+[default0]:  deepspeed_activation_checkpointing .............. True
+[default0]:  deepspeed_config ................................ ./ds_config.json
+[default0]:  deepspeed_mpi ................................... False
+[default0]:  distribute_checkpointed_activations ............. False
+[default0]:  distributed_backend ............................. nccl
+[default0]:  embed_layernorm ................................. False
+[default0]:  embedding_path .................................. None
+[default0]:  encoder_seq_length .............................. 512
+[default0]:  eod_mask_loss ................................... False
+[default0]:  eval_interval ................................... 100
+[default0]:  eval_iters ...................................... 10
+[default0]:  eval_only ....................................... None
+[default0]:  evidence_data_path .............................. None
+[default0]:  exit_duration_in_mins ........................... None
+[default0]:  exit_interval ................................... 100
+[default0]:  ffn_hidden_size ................................. 32
+[default0]:  finetune ........................................ False
+[default0]:  fp16 ............................................ True
+[default0]:  fp16_lm_cross_entropy ........................... False
+[default0]:  fp32_residual_connection ........................ False
+[default0]:  gigaflos_no_embeds .............................. 0
+[default0]:  global_batch_size ............................... 16
+[default0]:  glu_activation .................................. None
+[default0]:  hidden_dropout .................................. 0.1
+[default0]:  hidden_size ..................................... 8
+[default0]:  hysteresis ...................................... 2
+[default0]:  ict_head_size ................................... None
+[default0]:  ict_load ........................................ None
+[default0]:  img_dim ......................................... 224
+[default0]:  indexer_batch_size .............................. 128
+[default0]:  indexer_log_interval ............................ 1000
+[default0]:  inference ....................................... False
+[default0]:  init_method_std ................................. 0.02
+[default0]:  init_method_xavier_uniform ...................... False
+[default0]:  initial_loss_scale .............................. 4294967296
+[default0]:  kill_switch_path ................................ None
+[default0]:  kv_channels ..................................... 4
+[default0]:  layernorm_epsilon ............................... 1e-05
+[default0]:  lazy_mpu_init ................................... None
+[default0]:  load ............................................ checkpoints/gpt2-dist
+[default0]:  local_rank ...................................... None
+[default0]:  log_batch_size_to_tensorboard ................... True
+[default0]:  log_interval .................................... 10
+[default0]:  log_learning_rate_to_tensorboard ................ True
+[default0]:  log_level ....................................... None
+[default0]:  log_level_replica ............................... None
+[default0]:  log_loss_scale_to_tensorboard ................... True
+[default0]:  log_num_zeros_in_grad ........................... False
+[default0]:  log_params_norm ................................. False
+[default0]:  log_path ........................................ None
+[default0]:  log_timers_to_tensorboard ....................... True
+[default0]:  log_validation_ppl_to_tensorboard ............... True
+[default0]:  loss_on_targets_only ............................ False
+[default0]:  loss_scale ...................................... None
+[default0]:  loss_scale_window ............................... 1000
+[default0]:  lr .............................................. 0.0001
+[default0]:  lr_decay_iters .................................. None
+[default0]:  lr_decay_samples ................................ 12
+[default0]:  lr_decay_style .................................. cosine
+[default0]:  lr_decay_tokens ................................. None
+[default0]:  lr_warmup_fraction .............................. None
+[default0]:  lr_warmup_iters ................................. 0
+[default0]:  lr_warmup_samples ............................... 5
+[default0]:  make_vocab_size_divisible_by .................... 128
+[default0]:  mask_prob ....................................... 0.15
+[default0]:  masked_softmax_fusion ........................... True
+[default0]:  max_position_embeddings ......................... 512
+[default0]:  mean_noise_span_length .......................... None
+[default0]:  memory_centric_tiled_linear ..................... False
+[default0]:  merge_file ...................................... data/gpt2-merges.txt
+[default0]:  micro_batch_size ................................ 1
+[default0]:  min_loss_scale .................................. 1.0
+[default0]:  min_lr .......................................... 1e-06
+[default0]:  mmap_warmup ..................................... False
+[default0]:  no_load_optim ................................... None
+[default0]:  no_load_rng ..................................... None
+[default0]:  no_save_optim ................................... None
+[default0]:  no_save_rng ..................................... None
+[default0]:  noise_density ................................... None
+[default0]:  num_attention_heads ............................. 2
+[default0]:  num_channels .................................... 3
+[default0]:  num_classes ..................................... 1000
+[default0]:  num_layers ...................................... 2
+[default0]:  num_layers_per_virtual_pipeline_stage ........... None
+[default0]:  num_workers ..................................... 2
+[default0]:  onnx_safe ....................................... None
+[default0]:  openai_gelu ..................................... False
+[default0]:  optimizer ....................................... adam
+[default0]:  override_lr_scheduler ........................... False
+[default0]:  pad_vocab_size_to ............................... None
+[default0]:  params_dtype .................................... torch.float16
+[default0]:  partition_activations ........................... True
+[default0]:  patch_dim ....................................... 16
+[default0]:  pipeline_model_parallel_size .................... 1
+[default0]:  position_embedding_type ......................... PositionEmbeddingType.absolute
+[default0]:  pp_partition_method ............................. None
+[default0]:  profile_backward ................................ False
+[default0]:  query_in_block_prob ............................. 0.1
+[default0]:  rampup_batch_size ............................... ['2', '2', '1_000']
+[default0]:  rank ............................................ 0
+[default0]:  remote_device ................................... none
+[default0]:  reset_attention_mask ............................ False
+[default0]:  reset_position_ids .............................. False
+[default0]:  retriever_report_topk_accuracies ................ []
+[default0]:  retriever_score_scaling ......................... False
+[default0]:  retriever_seq_length ............................ 256
+[default0]:  reweight_loss_based_on_position_frequency ....... False
+[default0]:  sample_rate ..................................... 1.0
+[default0]:  save ............................................ checkpoints/gpt2-dist
+[default0]:  save_interval ................................... 50
+[default0]:  scatter_gather_tensors_in_pipeline .............. True
+[default0]:  scattered_embeddings ............................ False
+[default0]:  seed ............................................ 42
+[default0]:  seq_length ...................................... 512
+[default0]:  sgd_momentum .................................... 0.9
+[default0]:  short_seq_prob .................................. 0.1
+[default0]:  skip_train_iteration_range ...................... None
+[default0]:  split ........................................... 969, 30, 1
+[default0]:  split_transformers .............................. False
+[default0]:  sync_tp_duplicated_parameters ................... False
+[default0]:  synchronize_each_layer .......................... False
+[default0]:  tensor_model_parallel_size ...................... 2
+[default0]:  tensorboard_dir ................................. output_dir/tensorboard-dist
+[default0]:  tensorboard_log_interval ........................ 1
+[default0]:  tensorboard_queue_size .......................... 5
+[default0]:  test_weighted_split_names ....................... None
+[default0]:  test_weighted_split_paths ....................... None
+[default0]:  test_weighted_split_paths_path .................. None
+[default0]:  test_weighted_split_splits ...................... None
+[default0]:  test_weighted_split_weights ..................... None
+[default0]:  tile_factor ..................................... 1
+[default0]:  titles_data_path ................................ None
+[default0]:  tokenizer_name_or_path .......................... None
+[default0]:  tokenizer_type .................................. GPT2BPETokenizer
+[default0]:  train_iters ..................................... None
+[default0]:  train_samples ................................... 10000
+[default0]:  train_tokens .................................... None
+[default0]:  train_weighted_split_paths ...................... None
+[default0]:  train_weighted_split_paths_path ................. None
+[default0]:  universal_checkpoint ............................ False
+[default0]:  use_bnb_optimizer ............................... False
+[default0]:  use_checkpoint_lr_scheduler ..................... False
+[default0]:  use_contiguous_buffers_in_ddp ................... False
+[default0]:  use_cpu_initialization .......................... None
+[default0]:  use_one_sent_docs ............................... False
+[default0]:  use_pin_memory .................................. False
+[default0]:  valid_num_workers ............................... 2
+[default0]:  valid_weighted_split_names ...................... None
+[default0]:  valid_weighted_split_paths ...................... None
+[default0]:  valid_weighted_split_paths_path ................. None
+[default0]:  valid_weighted_split_splits ..................... None
+[default0]:  valid_weighted_split_weights .................... None
+[default0]:  virtual_pipeline_model_parallel_size ............ None
+[default0]:  vocab_extra_ids ................................. 0
+[default0]:  vocab_file ...................................... data/gpt2-vocab.json
+[default0]:  weight_decay .................................... 0.1
+[default0]:  world_size ...................................... 2
+[default0]:  zero_allgather_bucket_size ...................... 0.0
+[default0]:  zero_contigious_gradients ....................... False
+[default0]:  zero_reduce_bucket_size ......................... 0.0
+[default0]:  zero_reduce_scatter ............................. False
+[default0]:  zero_stage ...................................... 1
+[default0]:-------------------- end of arguments ---------------------
+[default0]:will use batch size rampup starting from global batch size 2 to global batch size 16 with batch size increments 2 over 1000 samples.
+[default0]:> building GPT2BPETokenizer tokenizer ...
+[default0]:WARNING: TensorBoard writing requested but is not available (are you using PyTorch 1.1.0 or later?), no TensorBoard logs will be written.
+[default0]: > padded vocab (size: 50257) with 175 dummy tokens (new size: 50432)
+[default0]:DeepSpeed general environment info:
+[default0]:torch install path ............... ['/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch']
+[default0]:torch version .................... 2.0.0+cu117
+[default0]:deepspeed install path ........... ['/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/deepspeed']
+[default0]:deepspeed info ................... 0.8.3, unknown, unknown
+[default0]:torch cuda version ............... 11.7
+[default0]:torch hip version ................ None
+[default0]:nvcc version ..................... 11.7
+[default0]:deepspeed wheel compiled w. ...... torch 2.0, cuda 11.7
+[default0]:**** Git info for Megatron: git_hash=e52bdab git_branch=main ****
+[default0]:> initializing torch distributed ...
+[default0]:[2023-04-13 11:37:40,320] [INFO] [comm.py:652:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[default0]:> initializing tensor model parallel with size 2
+[default0]:> initializing pipeline model parallel with size 1
+[default0]:> setting random seeds to 42 ...
+[default0]:[2023-04-13 11:37:44,722] [INFO] [checkpointing.py:227:model_parallel_cuda_manual_seed] > initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 2760 and data parallel seed: 42
+[default0]:> compiling dataset index builder ...
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:make: Entering directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data'
+[default0]:make: Nothing to be done for 'default'.
+[default0]:make: Leaving directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data'
+[default0]:>>> done with dataset index builder. Compilation time: 0.986 seconds
+[default0]:WARNING: constraints for invoking optimized fused softmax kernel are not met. We default back to unfused kernel invocations.
+[default0]:> compiling and loading fused kernels ...
+WARNING:torch.distributed.elastic.rendezvous.dynamic_rendezvous:The node 'n2gpu1212.ab2021.local_334912_0' has failed to send a keep-alive heartbeat to the rendezvous 'none' due to an error of type RendezvousTimeoutError.
+WARNING:torch.distributed.elastic.rendezvous.dynamic_rendezvous:The node 'n2gpu1213.ab2021.local_2042858_0' has failed to send a keep-alive heartbeat to the rendezvous 'none' due to an error of type RendezvousTimeoutError.
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 99, in pretrain
+[default0]:    initialize_megatron(extra_args_provider=extra_args_provider,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 164, in initialize_megatron
+[default0]:    _compile_dependencies()
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 223, in _compile_dependencies
+[default0]:    torch.distributed.barrier()
+[default0]:  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 3313, in barrier
+[default0]:    work = default_pg.barrier(opts=opts)
+[default0]:RuntimeError: [1] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+[default0]:Exception raised from recvBytes at ../torch/csrc/distributed/c10d/Utils.hpp:604 (most recent call first):
+[default0]:frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x57 (0x14ac7fd5e4d7 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libc10.so)
+[default0]:frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x68 (0x14ac7fd28434 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libc10.so)
+[default0]:frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::string>, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0xd8 (0x14acab2c8628 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #3: c10d::TCPStore::doGet(std::string const&) + 0x22 (0x14acab2c92d2 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #4: c10d::TCPStore::get(std::string const&) + 0x59 (0x14acab2c9359 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #5: c10d::PrefixStore::get(std::string const&) + 0x31 (0x14acab288821 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #6: c10d::PrefixStore::get(std::string const&) + 0x31 (0x14acab288821 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #7: c10d::PrefixStore::get(std::string const&) + 0x31 (0x14acab288821 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::string const&, int) + 0xaf (0x14ac80cedacf in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #9: c10d::ProcessGroupNCCL::getNCCLComm(std::string const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x201 (0x14ac80cf1781 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #10: <unknown function> + 0xeca8ad (0x14ac80cf88ad in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #11: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x14ac80cf9cb1 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #12: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x39d (0x14ac80cfc96d in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #13: c10d::ProcessGroupNCCL::barrier(c10d::BarrierOptions const&) + 0x851 (0x14ac80d0b8c1 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #14: <unknown function> + 0x538e039 (0x14acab27d039 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #15: <unknown function> + 0x5391d8a (0x14acab280d8a in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #16: <unknown function> + 0x53a0bf0 (0x14acab28fbf0 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #17: <unknown function> + 0xb6b8be (0x14acbf93e8be in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_python.so)
+[default0]:frame #18: <unknown function> + 0x3b7290 (0x14acbf18a290 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_python.so)
+[default0]:frame #19: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x507507]
+[default0]:frame #20: _PyObject_MakeTpCall + 0x2ec (0x4f049c in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #21: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x505430]
+[default0]:frame #22: _PyEval_EvalFrameDefault + 0x123f (0x4e892f in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #23: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4f7ec3]
+[default0]:frame #24: _PyEval_EvalFrameDefault + 0x4d74 (0x4ec464 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #25: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4f7ec3]
+[default0]:frame #26: _PyEval_EvalFrameDefault + 0x3ce (0x4e7abe in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #27: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+[default0]:frame #28: _PyFunction_Vectorcall + 0xd5 (0x4f7be5 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #29: _PyEval_EvalFrameDefault + 0x123f (0x4e892f in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #30: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+[default0]:frame #31: _PyFunction_Vectorcall + 0xd5 (0x4f7be5 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #32: _PyEval_EvalFrameDefault + 0x123f (0x4e892f in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #33: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4f7ec3]
+[default0]:frame #34: _PyEval_EvalFrameDefault + 0x301d (0x4ea70d in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #35: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+[default0]:frame #36: _PyFunction_Vectorcall + 0xd5 (0x4f7be5 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #37: _PyEval_EvalFrameDefault + 0x3ce (0x4e7abe in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #38: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+[default0]:frame #39: _PyEval_EvalCodeWithName + 0x47 (0x4e6477 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #40: PyEval_EvalCodeEx + 0x39 (0x4e6429 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #41: PyEval_EvalCode + 0x1b (0x593ccb in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #42: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x5c1077]
+[default0]:frame #43: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x5bd080]
+[default0]:frame #44: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4564f6]
+[default0]:frame #45: PyRun_SimpleFileExFlags + 0x1a2 (0x5b6d62 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #46: Py_RunMain + 0x37e (0x5b42de in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #47: Py_BytesMain + 0x39 (0x587d79 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+[default0]:frame #48: __libc_start_main + 0xf3 (0x14ad036b7cf3 in /lib64/libc.so.6)
+[default0]:frame #49: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x587c2e]
+[default0]:. This may indicate a possible application crash on rank 0 or a network set up issue.
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 2042960) of binary: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python
+ERROR:torch.distributed.elastic.agent.server.api:Error waiting on exit barrier. Elapsed: 331.047513961792 seconds
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 920, in _exit_barrier
+    store_util.barrier(
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/utils/store.py", line 78, in barrier
+    synchronize(store, data, rank, world_size, key_prefix, barrier_timeout)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/utils/store.py", line 64, in synchronize
+    agent_data = get_all(store, rank, key_prefix, world_size)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/utils/store.py", line 34, in get_all
+    data = store.get(f"{prefix}{idx}")
+RuntimeError: Socket Timeout
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "SignalException: Process 329574 got signal: 15",
+    "extraInfo": {
+      "py_callstack": "Traceback (most recent call last):\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 346, in wrapper\n    return f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py\", line 794, in main\n    run(args)\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py\", line 785, in run\n    elastic_launch(\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py\", line 134, in __call__\n    return launch_agent(self._config, self._entrypoint, list(args))\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py\", line 241, in launch_agent\n    result = agent.run()\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py\", line 129, in wrapper\n    result = f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py\", line 723, in run\n    result = self._invoke_run(role)\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py\", line 864, in _invoke_run\n    time.sleep(monitor_interval)\n  File \"/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py\", line 62, in _terminate_process_handler\n    raise SignalException(f\"Process {os.getpid()} got signal: {sigval}\", sigval=sigval)\ntorch.distributed.elastic.multiprocessing.api.SignalException: Process 329574 got signal: 15\n",
+      "timestamp": "1681374160"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 798, in <module>
+    main()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-13_12:08:53
+  host      : n2gpu1213.ab2021.local
+  rank      : 1 (local_rank: 0)
+  exitcode  : 1 (pid: 2042960)
+  error_file: /tmp/torchelastic_2cqw662b/none_g25iff_h/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 99, in pretrain
+      initialize_megatron(extra_args_provider=extra_args_provider,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 164, in initialize_megatron
+      _compile_dependencies()
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 223, in _compile_dependencies
+      torch.distributed.barrier()
+    File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/distributed_c10d.py", line 3313, in barrier
+      work = default_pg.barrier(opts=opts)
+  RuntimeError: [1] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+  Exception raised from recvBytes at ../torch/csrc/distributed/c10d/Utils.hpp:604 (most recent call first):
+  frame #0: c10::Error::Error(c10::SourceLocation, std::string) + 0x57 (0x14ac7fd5e4d7 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libc10.so)
+  frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0x68 (0x14ac7fd28434 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libc10.so)
+  frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::string>, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0xd8 (0x14acab2c8628 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #3: c10d::TCPStore::doGet(std::string const&) + 0x22 (0x14acab2c92d2 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #4: c10d::TCPStore::get(std::string const&) + 0x59 (0x14acab2c9359 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #5: c10d::PrefixStore::get(std::string const&) + 0x31 (0x14acab288821 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #6: c10d::PrefixStore::get(std::string const&) + 0x31 (0x14acab288821 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #7: c10d::PrefixStore::get(std::string const&) + 0x31 (0x14acab288821 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #8: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::string const&, int) + 0xaf (0x14ac80cedacf in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+  frame #9: c10d::ProcessGroupNCCL::getNCCLComm(std::string const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x201 (0x14ac80cf1781 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+  frame #10: <unknown function> + 0xeca8ad (0x14ac80cf88ad in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+  frame #11: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x21 (0x14ac80cf9cb1 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+  frame #12: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x39d (0x14ac80cfc96d in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+  frame #13: c10d::ProcessGroupNCCL::barrier(c10d::BarrierOptions const&) + 0x851 (0x14ac80d0b8c1 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cuda.so)
+  frame #14: <unknown function> + 0x538e039 (0x14acab27d039 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #15: <unknown function> + 0x5391d8a (0x14acab280d8a in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #16: <unknown function> + 0x53a0bf0 (0x14acab28fbf0 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_cpu.so)
+  frame #17: <unknown function> + 0xb6b8be (0x14acbf93e8be in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_python.so)
+  frame #18: <unknown function> + 0x3b7290 (0x14acbf18a290 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/lib/libtorch_python.so)
+  frame #19: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x507507]
+  frame #20: _PyObject_MakeTpCall + 0x2ec (0x4f049c in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #21: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x505430]
+  frame #22: _PyEval_EvalFrameDefault + 0x123f (0x4e892f in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #23: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4f7ec3]
+  frame #24: _PyEval_EvalFrameDefault + 0x4d74 (0x4ec464 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #25: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4f7ec3]
+  frame #26: _PyEval_EvalFrameDefault + 0x3ce (0x4e7abe in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #27: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+  frame #28: _PyFunction_Vectorcall + 0xd5 (0x4f7be5 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #29: _PyEval_EvalFrameDefault + 0x123f (0x4e892f in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #30: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+  frame #31: _PyFunction_Vectorcall + 0xd5 (0x4f7be5 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #32: _PyEval_EvalFrameDefault + 0x123f (0x4e892f in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #33: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4f7ec3]
+  frame #34: _PyEval_EvalFrameDefault + 0x301d (0x4ea70d in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #35: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+  frame #36: _PyFunction_Vectorcall + 0xd5 (0x4f7be5 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #37: _PyEval_EvalFrameDefault + 0x3ce (0x4e7abe in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #38: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4e67ea]
+  frame #39: _PyEval_EvalCodeWithName + 0x47 (0x4e6477 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #40: PyEval_EvalCodeEx + 0x39 (0x4e6429 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #41: PyEval_EvalCode + 0x1b (0x593ccb in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #42: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x5c1077]
+  frame #43: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x5bd080]
+  frame #44: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x4564f6]
+  frame #45: PyRun_SimpleFileExFlags + 0x1a2 (0x5b6d62 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #46: Py_RunMain + 0x37e (0x5b42de in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #47: Py_BytesMain + 0x39 (0x587d79 in /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python)
+  frame #48: __libc_start_main + 0xf3 (0x14ad036b7cf3 in /lib64/libc.so.6)
+  frame #49: /scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/bin/python() [0x587c2e]
+  . This may indicate a possible application crash on rank 0 or a network set up issue.
+  
+============================================================
+srun: error: n2gpu1213: task 1: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=3377730.0
+slurmstepd: error: *** STEP 3377730.0 ON n2gpu1212 CANCELLED AT 2023-04-13T12:16:03 ***
+WARNING:torch.distributed.elastic.agent.server.api:Received 15 death signal, shutting down workers
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 335014 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 798, in <module>
+    main()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 241, in launch_agent
+    result = agent.run()
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 129, in wrapper
+    result = f(*args, **kwargs)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 723, in run
+    result = self._invoke_run(role)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 864, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/scratch/hpc-prf-lola/lib_repo/conda-libs/envs/dstorch/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 62, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 334912 got signal: 15
+srun: error: n2gpu1212: task 0: Killed
+srun: Force Terminated StepId=3377730.0

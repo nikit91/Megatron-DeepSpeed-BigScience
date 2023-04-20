@@ -1,0 +1,8 @@
+cpu-bind=MASK - n2gpu1210, task  0  0 [195551]: mask |BBBBBBBB|BBBBBBBB||--------|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1210, task  0  0 [195590]: mask |BBBBBBBB|BBBBBBBB||--------|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1222, task  1  0 [3392401]: mask |BBBBBBBB|BBBBBBBB||--------|--------||--------|--------||--------|--------||||--------|--------||--------|--------||--------|--------||--------|--------|  set
+/opt/software/pc2/EB-SW/software/Anaconda3/2021.11/bin/python: Error while finding module specification for 'torch.distributed.run' (ModuleNotFoundError: No module named 'torch')
+srun: error: n2gpu1210: task 0: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=3289301.0
+srun: error: n2gpu1222: task 1: Terminated
+srun: Force Terminated StepId=3289301.0

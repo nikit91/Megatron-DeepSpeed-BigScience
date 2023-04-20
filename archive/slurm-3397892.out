@@ -1,0 +1,398 @@
+cpu-bind=MASK - n2gpu1202, task  0  0 [7876]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+LAUNCHER: python -u -m torch.distributed.run --nproc_per_node 1 --nnodes 2 --rdzv_id=1234 --rdzv_endpoint n2gpu1202:6000 --rdzv_backend c10d --max_restarts 0 --tee 3
+CMD: pretrain_gpt.py --tensor-model-parallel-size 2 --pipeline-model-parallel-size 1 --distributed-backend nccl --num-layers 2 --hidden-size 8 --num-attention-heads 2 --seq-length 512 --max-position-embeddings 512 --micro-batch-size 1 --rampup-batch-size 2 2 1_000 --global-batch-size 16 --train-samples 10_000 --optimizer adam --adam-beta1 0.9 --adam-beta2 0.95 --adam-eps 1e-8 --lr 1e-4 --lr-warmup-samples 5 --min-lr 1e-6 --lr-decay-style cosine --lr-decay-samples 12 --clip-grad 1.0 --weight-decay 1e-1 --fp16 --partition-activations --seed 42 --vocab-file data/gpt2-vocab.json --merge-file data/gpt2-merges.txt --exit-interval 100 --log-interval 10 --save-interval 50 --eval-interval 100 --eval-iters 10 --checkpoint-activations --save checkpoints/gpt2-dist --load checkpoints/gpt2-dist --data-path data/meg-gpt2-oscar-en-10k_text_document --tensorboard-dir output_dir/tensorboard-dist --tensorboard-queue-size 5 --log-timers-to-tensorboard --log-batch-size-to-tensorboard --log-validation-ppl-to-tensorboard --deepspeed --deepspeed_config ./ds_config.json --zero-stage 1 --deepspeed-activation-checkpointing
+cpu-bind=MASK - n2gpu1202, task  0  0 [7987]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1203, task  1  0 [7121]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+[default0]:pretrain_gpt.py main
+[default0]:using world size: 2, data-parallel-size: 1, tensor-model-parallel size: 2, pipeline-model-parallel size: 1 
+[default0]:using torch.float16 for parameters ...
+[default0]:------------------------ arguments ------------------------
+[default0]:  abort_on_unmet_fused_kernel_constraints ......... False
+[default0]:  accumulate_allreduce_grads_in_fp32 .............. False
+[default0]:  adam_beta1 ...................................... 0.9
+[default0]:  adam_beta2 ...................................... 0.95
+[default0]:  adam_eps ........................................ 1e-08
+[default0]:  adlr_autoresume ................................. False
+[default0]:  adlr_autoresume_interval ........................ 1000
+[default0]:  apply_query_key_layer_scaling ................... True
+[default0]:  apply_residual_connection_post_layernorm ........ False
+[default0]:  attention_dropout ............................... 0.1
+[default0]:  attention_softmax_in_fp32 ....................... False
+[default0]:  bert_binary_head ................................ True
+[default0]:  bert_load ....................................... None
+[default0]:  bf16 ............................................ False
+[default0]:  bias_dropout_fusion ............................. True
+[default0]:  bias_gelu_fusion ................................ True
+[default0]:  biencoder_projection_dim ........................ 0
+[default0]:  biencoder_shared_query_context_model ............ False
+[default0]:  block_data_path ................................. None
+[default0]:  checkpoint_activations .......................... True
+[default0]:  checkpoint_in_cpu ............................... False
+[default0]:  checkpoint_num_layers ........................... 1
+[default0]:  clip_grad ....................................... 1.0
+[default0]:  codecarbon_dir .................................. None
+[default0]:  consumed_train_samples .......................... 0
+[default0]:  consumed_train_tokens ........................... 0
+[default0]:  consumed_valid_samples .......................... 0
+[default0]:  contigious_checkpointing ........................ False
+[default0]:  cpu_optimizer ................................... False
+[default0]:  cpu_torch_adam .................................. False
+[default0]:  curriculum_learning ............................. False
+[default0]:  data_impl ....................................... infer
+[default0]:  data_parallel_size .............................. 1
+[default0]:  data_path ....................................... ['data/meg-gpt2-oscar-en-10k_text_document']
+[default0]:  dataloader_type ................................. single
+[default0]:  DDP_impl ........................................ local
+[default0]:  decoder_seq_length .............................. None
+[default0]:  deepscale ....................................... False
+[default0]:  deepscale_config ................................ None
+[default0]:  deepspeed ....................................... True
+[default0]:  deepspeed_activation_checkpointing .............. True
+[default0]:  deepspeed_config ................................ ./ds_config.json
+[default0]:  deepspeed_mpi ................................... False
+[default0]:  distribute_checkpointed_activations ............. False
+[default0]:  distributed_backend ............................. nccl
+[default0]:  embed_layernorm ................................. False
+[default0]:  embedding_path .................................. None
+[default0]:  encoder_seq_length .............................. 512
+[default0]:  eod_mask_loss ................................... False
+[default0]:  eval_interval ................................... 100
+[default0]:  eval_iters ...................................... 10
+[default0]:  eval_only ....................................... None
+[default0]:  evidence_data_path .............................. None
+[default0]:  exit_duration_in_mins ........................... None
+[default0]:  exit_interval ................................... 100
+[default0]:  ffn_hidden_size ................................. 32
+[default0]:  finetune ........................................ False
+[default0]:  fp16 ............................................ True
+[default0]:  fp16_lm_cross_entropy ........................... False
+[default0]:  fp32_residual_connection ........................ False
+[default0]:  gigaflos_no_embeds .............................. 0
+[default0]:  global_batch_size ............................... 16
+[default0]:  glu_activation .................................. None
+[default0]:  hidden_dropout .................................. 0.1
+[default0]:  hidden_size ..................................... 8
+[default0]:  hysteresis ...................................... 2
+[default0]:  ict_head_size ................................... None
+[default0]:  ict_load ........................................ None
+[default0]:  img_dim ......................................... 224
+[default0]:  indexer_batch_size .............................. 128
+[default0]:  indexer_log_interval ............................ 1000
+[default0]:  inference ....................................... False
+[default0]:  init_method_std ................................. 0.02
+[default0]:  init_method_xavier_uniform ...................... False
+[default0]:  initial_loss_scale .............................. 4294967296
+[default0]:  kill_switch_path ................................ None
+[default0]:  kv_channels ..................................... 4
+[default0]:  layernorm_epsilon ............................... 1e-05
+[default0]:  lazy_mpu_init ................................... None
+[default0]:  load ............................................ checkpoints/gpt2-dist
+[default0]:  local_rank ...................................... None
+[default0]:  log_batch_size_to_tensorboard ................... True
+[default0]:  log_interval .................................... 10
+[default0]:  log_learning_rate_to_tensorboard ................ True
+[default0]:  log_level ....................................... None
+[default0]:  log_level_replica ............................... None
+[default0]:  log_loss_scale_to_tensorboard ................... True
+[default0]:  log_num_zeros_in_grad ........................... False
+[default0]:  log_params_norm ................................. False
+[default0]:  log_path ........................................ None
+[default0]:  log_timers_to_tensorboard ....................... True
+[default0]:  log_validation_ppl_to_tensorboard ............... True
+[default0]:  loss_on_targets_only ............................ False
+[default0]:  loss_scale ...................................... None
+[default0]:  loss_scale_window ............................... 1000
+[default0]:  lr .............................................. 0.0001
+[default0]:  lr_decay_iters .................................. None
+[default0]:  lr_decay_samples ................................ 12
+[default0]:  lr_decay_style .................................. cosine
+[default0]:  lr_decay_tokens ................................. None
+[default0]:  lr_warmup_fraction .............................. None
+[default0]:  lr_warmup_iters ................................. 0
+[default0]:  lr_warmup_samples ............................... 5
+[default0]:  make_vocab_size_divisible_by .................... 128
+[default0]:  mask_prob ....................................... 0.15
+[default0]:  masked_softmax_fusion ........................... True
+[default0]:  max_position_embeddings ......................... 512
+[default0]:  mean_noise_span_length .......................... None
+[default0]:  memory_centric_tiled_linear ..................... False
+[default0]:  merge_file ...................................... data/gpt2-merges.txt
+[default0]:  micro_batch_size ................................ 1
+[default0]:  min_loss_scale .................................. 1.0
+[default0]:  min_lr .......................................... 1e-06
+[default0]:  mmap_warmup ..................................... False
+[default0]:  no_load_optim ................................... None
+[default0]:  no_load_rng ..................................... None
+[default0]:  no_save_optim ................................... None
+[default0]:  no_save_rng ..................................... None
+[default0]:  noise_density ................................... None
+[default0]:  num_attention_heads ............................. 2
+[default0]:  num_channels .................................... 3
+[default0]:  num_classes ..................................... 1000
+[default0]:  num_layers ...................................... 2
+[default0]:  num_layers_per_virtual_pipeline_stage ........... None
+[default0]:  num_workers ..................................... 2
+[default0]:  onnx_safe ....................................... None
+[default0]:  openai_gelu ..................................... False
+[default0]:  optimizer ....................................... adam
+[default0]:  override_lr_scheduler ........................... False
+[default0]:  pad_vocab_size_to ............................... None
+[default0]:  params_dtype .................................... torch.float16
+[default0]:  partition_activations ........................... True
+[default0]:  patch_dim ....................................... 16
+[default0]:  pipeline_model_parallel_size .................... 1
+[default0]:  position_embedding_type ......................... PositionEmbeddingType.absolute
+[default0]:  pp_partition_method ............................. None
+[default0]:  profile_backward ................................ False
+[default0]:  query_in_block_prob ............................. 0.1
+[default0]:  rampup_batch_size ............................... ['2', '2', '1_000']
+[default0]:  rank ............................................ 0
+[default0]:  remote_device ................................... none
+[default0]:  reset_attention_mask ............................ False
+[default0]:  reset_position_ids .............................. False
+[default0]:  retriever_report_topk_accuracies ................ []
+[default0]:  retriever_score_scaling ......................... False
+[default0]:  retriever_seq_length ............................ 256
+[default0]:  reweight_loss_based_on_position_frequency ....... False
+[default0]:  sample_rate ..................................... 1.0
+[default0]:  save ............................................ checkpoints/gpt2-dist
+[default0]:  save_interval ................................... 50
+[default0]:  scatter_gather_tensors_in_pipeline .............. True
+[default0]:  scattered_embeddings ............................ False
+[default0]:  seed ............................................ 42
+[default0]:  seq_length ...................................... 512
+[default0]:  sgd_momentum .................................... 0.9
+[default0]:  short_seq_prob .................................. 0.1
+[default0]:  skip_train_iteration_range ...................... None
+[default0]:  split ........................................... 969, 30, 1
+[default0]:  split_transformers .............................. False
+[default0]:  sync_tp_duplicated_parameters ................... False
+[default0]:  synchronize_each_layer .......................... False
+[default0]:  tensor_model_parallel_size ...................... 2
+[default0]:  tensorboard_dir ................................. output_dir/tensorboard-dist
+[default0]:  tensorboard_log_interval ........................ 1
+[default0]:  tensorboard_queue_size .......................... 5
+[default0]:  test_weighted_split_names ....................... None
+[default0]:  test_weighted_split_paths ....................... None
+[default0]:  test_weighted_split_paths_path .................. None
+[default0]:  test_weighted_split_splits ...................... None
+[default0]:  test_weighted_split_weights ..................... None
+[default0]:  tile_factor ..................................... 1
+[default0]:  titles_data_path ................................ None
+[default0]:  tokenizer_name_or_path .......................... None
+[default0]:  tokenizer_type .................................. GPT2BPETokenizer
+[default0]:  train_iters ..................................... None
+[default0]:  train_samples ................................... 10000
+[default0]:  train_tokens .................................... None
+[default0]:  train_weighted_split_paths ...................... None
+[default0]:  train_weighted_split_paths_path ................. None
+[default0]:  universal_checkpoint ............................ False
+[default0]:  use_bnb_optimizer ............................... False
+[default0]:  use_checkpoint_lr_scheduler ..................... False
+[default0]:  use_contiguous_buffers_in_ddp ................... False
+[default0]:  use_cpu_initialization .......................... None
+[default0]:  use_one_sent_docs ............................... False
+[default0]:  use_pin_memory .................................. False
+[default0]:  valid_num_workers ............................... 2
+[default0]:  valid_weighted_split_names ...................... None
+[default0]:  valid_weighted_split_paths ...................... None
+[default0]:  valid_weighted_split_paths_path ................. None
+[default0]:  valid_weighted_split_splits ..................... None
+[default0]:  valid_weighted_split_weights .................... None
+[default0]:  virtual_pipeline_model_parallel_size ............ None
+[default0]:  vocab_extra_ids ................................. 0
+[default0]:  vocab_file ...................................... data/gpt2-vocab.json
+[default0]:  weight_decay .................................... 0.1
+[default0]:  world_size ...................................... 2
+[default0]:  zero_allgather_bucket_size ...................... 0.0
+[default0]:  zero_contigious_gradients ....................... False
+[default0]:  zero_reduce_bucket_size ......................... 0.0
+[default0]:  zero_reduce_scatter ............................. False
+[default0]:  zero_stage ...................................... 1
+[default0]:-------------------- end of arguments ---------------------
+[default0]:will use batch size rampup starting from global batch size 2 to global batch size 16 with batch size increments 2 over 1000 samples.
+[default0]:> building GPT2BPETokenizer tokenizer ...
+[default0]: > padded vocab (size: 50257) with 175 dummy tokens (new size: 50432)
+[default0]:DeepSpeed general environment info:
+[default0]:torch install path ............... ['/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch']
+[default0]:torch version .................... 1.12.0
+[default0]:deepspeed install path ........... ['/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed']
+[default0]:deepspeed info ................... 0.9.0, unknown, unknown
+[default0]:torch cuda version ............... 11.7
+[default0]:torch hip version ................ None
+[default0]:nvcc version ..................... 11.7
+[default0]:deepspeed wheel compiled w. ...... torch 1.12, cuda 11.7
+[default0]:**** Git info for Megatron: git_hash=e52bdab git_branch=main ****
+[default0]:> initializing torch distributed ...
+[default0]:[2023-04-18 17:55:53,947] [INFO] [comm.py:586:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[default0]:pretrain_gpt.py main
+[default0]:WARNING: TensorBoard writing requested but is not available (are you using PyTorch 1.1.0 or later?), no TensorBoard logs will be written.
+[default0]:> initializing tensor model parallel with size 2
+[default0]:> initializing pipeline model parallel with size 1
+[default0]:> setting random seeds to 42 ...
+[default0]:[2023-04-18 17:56:07,198] [INFO] [checkpointing.py:226:model_parallel_cuda_manual_seed] > initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 2760 and data parallel seed: 42
+[default0]:> compiling dataset index builder ...
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:make: Entering directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data'
+[default0]:make: Nothing to be done for 'default'.
+[default0]:make: Leaving directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data'
+[default0]:>>> done with dataset index builder. Compilation time: 0.264 seconds
+[default0]:WARNING: constraints for invoking optimized fused softmax kernel are not met. We default back to unfused kernel invocations.
+[default0]:> compiling and loading fused kernels ...
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 99, in pretrain
+[default0]:    initialize_megatron(extra_args_provider=extra_args_provider,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 164, in initialize_megatron
+[default0]:    _compile_dependencies()
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 223, in _compile_dependencies
+[default0]:    torch.distributed.barrier()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 2784, in barrier
+[default0]:    work = default_pg.barrier(opts=opts)
+[default0]:RuntimeError: [1] is setting up NCCL communicator and retreiving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+[default0]:Exception raised from recvBytes at /dev/shm/PyTorch/1.12.0/foss-2022a-CUDA-11.7.0/pytorch/torch/csrc/distributed/c10d/Utils.hpp:579 (most recent call first):
+[default0]:frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x95 (0x148fc7e351d5 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libc10.so)
+[default0]:frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0xd9 (0x148fc7e0bbca in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libc10.so)
+[default0]:frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0xd0 (0x148ff63dd960 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x22 (0x148ff63de532 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x148ff63de5d6 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x148ff63a6fef in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x148ff63a6fef in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+[default0]:frame #7: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1da (0x148fc8cfdeda in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #8: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x23c (0x148fc8d0445c in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #9: <unknown function> + 0xe48d22 (0x148fc8d0ad22 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #10: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x10 (0x148fc8d0bff0 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #11: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x318 (0x148fc8d0d848 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #12: c10d::ProcessGroupNCCL::barrier(c10d::BarrierOptions const&) + 0x713 (0x148fc8d16d63 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+[default0]:frame #13: <unknown function> + 0x9e792b (0x148ffc83992b in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_python.so)
+[default0]:frame #14: <unknown function> + 0x35d961 (0x148ffc1af961 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_python.so)
+[default0]:<omitting python frames>
+[default0]:frame #40: __libc_start_main + 0xf3 (0x149039960cf3 in /lib64/libc.so.6)
+[default0]:frame #41: _start + 0x2e (0x4006ae in /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python)
+[default0]:
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 7139) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.agent.server.api:Error waiting on exit barrier. Elapsed: 321.1119706630707 seconds
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 906, in _exit_barrier
+    store_util.barrier(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/utils/store.py", line 78, in barrier
+    synchronize(store, data, rank, world_size, key_prefix, barrier_timeout)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/utils/store.py", line 64, in synchronize
+    agent_data = get_all(store, rank, key_prefix, world_size)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/utils/store.py", line 34, in get_all
+    data = store.get(f"{prefix}{idx}")
+RuntimeError: Socket Timeout
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "SignalException: Process 6240 got signal: 15",
+    "extraInfo": {
+      "py_callstack": "Traceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py\", line 709, in run\n    result = self._invoke_run(role)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py\", line 850, in _invoke_run\n    time.sleep(monitor_interval)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py\", line 60, in _terminate_process_handler\n    raise SignalException(f\"Process {os.getpid()} got signal: {sigval}\", sigval=sigval)\ntorch.distributed.elastic.multiprocessing.api.SignalException: Process 6240 got signal: 15\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 345, in wrapper\n    return f(*args, **kwargs)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py\", line 761, in main\n    run(args)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py\", line 752, in run\n    elastic_launch(\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py\", line 131, in __call__\n    return launch_agent(self._config, self._entrypoint, list(args))\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py\", line 236, in launch_agent\n    result = agent.run()\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py\", line 125, in wrapper\n    result = f(*args, **kwargs)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py\", line 716, in run\n    self._shutdown(e.sigval)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py\", line 193, in _shutdown\n    self._pcontext.close(death_sig)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py\", line 330, in close\n    self._close(death_sig=death_sig, timeout=timeout)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py\", line 707, in _close\n    handler.proc.wait(time_to_wait)\n  File \"/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/subprocess.py\", line 1204, in wait\n    return self._wait(timeout=timeout)\n  File \"/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/subprocess.py\", line 1932, in _wait\n    time.sleep(delay)\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py\", line 60, in _terminate_process_handler\n    raise SignalException(f\"Process {os.getpid()} got signal: {sigval}\", sigval=sigval)\ntorch.distributed.elastic.multiprocessing.api.SignalException: Process 6240 got signal: 15\n",
+      "timestamp": "1681831432"
+    }
+  }
+}
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    main()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-18_18:26:16
+  host      : n2gpu1203.ab2021.local
+  rank      : 1 (local_rank: 0)
+  exitcode  : 1 (pid: 7139)
+  error_file: /tmp/torchelastic_pvz1qtcl/1234_me35izxa/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 99, in pretrain
+      initialize_megatron(extra_args_provider=extra_args_provider,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 164, in initialize_megatron
+      _compile_dependencies()
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/initialize.py", line 223, in _compile_dependencies
+      torch.distributed.barrier()
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 2784, in barrier
+      work = default_pg.barrier(opts=opts)
+  RuntimeError: [1] is setting up NCCL communicator and retreiving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Socket Timeout
+  Exception raised from recvBytes at /dev/shm/PyTorch/1.12.0/foss-2022a-CUDA-11.7.0/pytorch/torch/csrc/distributed/c10d/Utils.hpp:579 (most recent call first):
+  frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x95 (0x148fc7e351d5 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libc10.so)
+  frame #1: c10::detail::torchCheckFail(char const*, char const*, unsigned int, char const*) + 0xd9 (0x148fc7e0bbca in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libc10.so)
+  frame #2: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0xd0 (0x148ff63dd960 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+  frame #3: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x22 (0x148ff63de532 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+  frame #4: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x76 (0x148ff63de5d6 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+  frame #5: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x148ff63a6fef in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+  frame #6: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x2f (0x148ff63a6fef in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cpu.so)
+  frame #7: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x1da (0x148fc8cfdeda in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+  frame #8: c10d::ProcessGroupNCCL::getNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::vector<c10::Device, std::allocator<c10::Device> > const&, c10d::OpType, int, bool) + 0x23c (0x148fc8d0445c in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+  frame #9: <unknown function> + 0xe48d22 (0x148fc8d0ad22 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+  frame #10: c10d::ProcessGroupNCCL::allreduce_impl(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x10 (0x148fc8d0bff0 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+  frame #11: c10d::ProcessGroupNCCL::allreduce(std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllreduceOptions const&) + 0x318 (0x148fc8d0d848 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+  frame #12: c10d::ProcessGroupNCCL::barrier(c10d::BarrierOptions const&) + 0x713 (0x148fc8d16d63 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_cuda.so)
+  frame #13: <unknown function> + 0x9e792b (0x148ffc83992b in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_python.so)
+  frame #14: <unknown function> + 0x35d961 (0x148ffc1af961 in /opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/lib/libtorch_python.so)
+  <omitting python frames>
+  frame #40: __libc_start_main + 0xf3 (0x149039960cf3 in /lib64/libc.so.6)
+  frame #41: _start + 0x2e (0x4006ae in /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python)
+  
+  
+============================================================
+srun: error: n2gpu1203: task 1: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=3397892.0
+slurmstepd: error: *** STEP 3397892.0 ON n2gpu1202 CANCELLED AT 2023-04-18T18:31:43 ***
+WARNING:torch.distributed.elastic.agent.server.api:Received 15 death signal, shutting down workers
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 8002 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    main()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 236, in launch_agent
+    result = agent.run()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    result = self._invoke_run(role)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 850, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 60, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 7987 got signal: 15
+srun: error: n2gpu1202: task 0: Exited with exit code 1

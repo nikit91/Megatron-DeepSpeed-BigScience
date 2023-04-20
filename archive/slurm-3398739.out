@@ -1,0 +1,1988 @@
+cpu-bind=MASK - n2gpu1201, task  0  0 [63928]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+LAUNCHER: python -u -m torch.distributed.run --nproc_per_node 1 --nnodes 8 --rdzv_id=1234 --rdzv_endpoint n2gpu1201:6005 --rdzv_backend c10d --max_restarts 0 --tee 3
+CMD: pretrain_gpt.py --tensor-model-parallel-size 2 --pipeline-model-parallel-size 1 --distributed-backend nccl --num-layers 2 --hidden-size 8 --num-attention-heads 2 --seq-length 512 --max-position-embeddings 512 --micro-batch-size 1 --rampup-batch-size 2 2 1_000 --global-batch-size 16 --train-samples 10_000 --optimizer adam --adam-beta1 0.9 --adam-beta2 0.95 --adam-eps 1e-8 --lr 1e-4 --lr-warmup-samples 5 --min-lr 1e-6 --lr-decay-style cosine --lr-decay-samples 12 --clip-grad 1.0 --weight-decay 1e-1 --fp16 --partition-activations --seed 42 --vocab-file data/gpt2-vocab.json --merge-file data/gpt2-merges.txt --exit-interval 100 --log-interval 10 --save-interval 50 --eval-interval 100 --eval-iters 10 --checkpoint-activations --save checkpoints/gpt2-dist --load checkpoints/gpt2-dist --data-path data/meg-gpt2-oscar-en-10k_text_document --tensorboard-dir output_dir/tensorboard-dist --tensorboard-queue-size 5 --log-timers-to-tensorboard --log-batch-size-to-tensorboard --log-validation-ppl-to-tensorboard --deepspeed --zero-stage 1 --deepspeed_config ./ds_config.json --deepspeed-activation-checkpointing
+cpu-bind=MASK - n2gpu1202, task  1  0 [38628]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1204, task  3  0 [31871]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1201, task  0  0 [64036]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1207, task  6  0 [31296]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1208, task  7  0 [31292]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1206, task  5  0 [31326]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1205, task  4  0 [31148]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+cpu-bind=MASK - n2gpu1203, task  2  0 [32567]: mask |--------|--------||--------|--------||--------|--------||--------|--------||||B-------|--------||--------|--------||--------|--------||--------|--------|  set
+[default0]:pretrain_gpt.py main
+[default0]:pretrain_gpt.py main
+[default0]:using world size: 8, data-parallel-size: 4, tensor-model-parallel size: 2, pipeline-model-parallel size: 1 
+[default0]:using torch.float16 for parameters ...
+[default0]:------------------------ arguments ------------------------
+[default0]:  abort_on_unmet_fused_kernel_constraints ......... False
+[default0]:  accumulate_allreduce_grads_in_fp32 .............. False
+[default0]:  adam_beta1 ...................................... 0.9
+[default0]:  adam_beta2 ...................................... 0.95
+[default0]:  adam_eps ........................................ 1e-08
+[default0]:  adlr_autoresume ................................. False
+[default0]:  adlr_autoresume_interval ........................ 1000
+[default0]:  apply_query_key_layer_scaling ................... True
+[default0]:  apply_residual_connection_post_layernorm ........ False
+[default0]:  attention_dropout ............................... 0.1
+[default0]:pretrain_gpt.py main
+[default0]:pretrain_gpt.py main
+[default0]:  attention_softmax_in_fp32 ....................... False
+[default0]:  bert_binary_head ................................ True
+[default0]:  bert_load ....................................... None
+[default0]:  bf16 ............................................ False
+[default0]:  bias_dropout_fusion ............................. True
+[default0]:  bias_gelu_fusion ................................ True
+[default0]:  biencoder_projection_dim ........................ 0
+[default0]:  biencoder_shared_query_context_model ............ False
+[default0]:  block_data_path ................................. None
+[default0]:  checkpoint_activations .......................... True
+[default0]:  checkpoint_in_cpu ............................... False
+[default0]:  checkpoint_num_layers ........................... 1
+[default0]:  clip_grad ....................................... 1.0
+[default0]:  codecarbon_dir .................................. None
+[default0]:  consumed_train_samples .......................... 0
+[default0]:  consumed_train_tokens ........................... 0
+[default0]:  consumed_valid_samples .......................... 0
+[default0]:  contigious_checkpointing ........................ False
+[default0]:  cpu_optimizer ................................... False
+[default0]:  cpu_torch_adam .................................. False
+[default0]:  curriculum_learning ............................. False
+[default0]:  data_impl ....................................... infer
+[default0]:  data_parallel_size .............................. 4
+[default0]:  data_path ....................................... ['data/meg-gpt2-oscar-en-10k_text_document']
+[default0]:  dataloader_type ................................. single
+[default0]:  DDP_impl ........................................ local
+[default0]:  decoder_seq_length .............................. None
+[default0]:  deepscale ....................................... False
+[default0]:  deepscale_config ................................ None
+[default0]:  deepspeed ....................................... True
+[default0]:  deepspeed_activation_checkpointing .............. True
+[default0]:  deepspeed_config ................................ ./ds_config.json
+[default0]:  deepspeed_mpi ................................... False
+[default0]:  distribute_checkpointed_activations ............. False
+[default0]:  distributed_backend ............................. nccl
+[default0]:  embed_layernorm ................................. False
+[default0]:  embedding_path .................................. None
+[default0]:  encoder_seq_length .............................. 512
+[default0]:  eod_mask_loss ................................... False
+[default0]:  eval_interval ................................... 100
+[default0]:  eval_iters ...................................... 10
+[default0]:  eval_only ....................................... None
+[default0]:  evidence_data_path .............................. None
+[default0]:  exit_duration_in_mins ........................... None
+[default0]:  exit_interval ................................... 100
+[default0]:  ffn_hidden_size ................................. 32
+[default0]:  finetune ........................................ False
+[default0]:  fp16 ............................................ True
+[default0]:  fp16_lm_cross_entropy ........................... False
+[default0]:  fp32_residual_connection ........................ False
+[default0]:  gigaflos_no_embeds .............................. 0
+[default0]:  global_batch_size ............................... 16
+[default0]:  glu_activation .................................. None
+[default0]:  hidden_dropout .................................. 0.1
+[default0]:  hidden_size ..................................... 8
+[default0]:  hysteresis ...................................... 2
+[default0]:  ict_head_size ................................... None
+[default0]:  ict_load ........................................ None
+[default0]:  img_dim ......................................... 224
+[default0]:  indexer_batch_size .............................. 128
+[default0]:  indexer_log_interval ............................ 1000
+[default0]:  inference ....................................... False
+[default0]:  init_method_std ................................. 0.02
+[default0]:  init_method_xavier_uniform ...................... False
+[default0]:  initial_loss_scale .............................. 4294967296
+[default0]:  kill_switch_path ................................ None
+[default0]:  kv_channels ..................................... 4
+[default0]:  layernorm_epsilon ............................... 1e-05
+[default0]:  lazy_mpu_init ................................... None
+[default0]:  load ............................................ checkpoints/gpt2-dist
+[default0]:  local_rank ...................................... None
+[default0]:  log_batch_size_to_tensorboard ................... True
+[default0]:  log_interval .................................... 10
+[default0]:  log_learning_rate_to_tensorboard ................ True
+[default0]:  log_level ....................................... None
+[default0]:  log_level_replica ............................... None
+[default0]:  log_loss_scale_to_tensorboard ................... True
+[default0]:  log_num_zeros_in_grad ........................... False
+[default0]:  log_params_norm ................................. False
+[default0]:  log_path ........................................ None
+[default0]:  log_timers_to_tensorboard ....................... True
+[default0]:  log_validation_ppl_to_tensorboard ............... True
+[default0]:  loss_on_targets_only ............................ False
+[default0]:  loss_scale ...................................... None
+[default0]:  loss_scale_window ............................... 1000
+[default0]:  lr .............................................. 0.0001
+[default0]:  lr_decay_iters .................................. None
+[default0]:  lr_decay_samples ................................ 12
+[default0]:  lr_decay_style .................................. cosine
+[default0]:  lr_decay_tokens ................................. None
+[default0]:  lr_warmup_fraction .............................. None
+[default0]:  lr_warmup_iters ................................. 0
+[default0]:  lr_warmup_samples ............................... 5
+[default0]:  make_vocab_size_divisible_by .................... 128
+[default0]:  mask_prob ....................................... 0.15
+[default0]:  masked_softmax_fusion ........................... True
+[default0]:  max_position_embeddings ......................... 512
+[default0]:  mean_noise_span_length .......................... None
+[default0]:  memory_centric_tiled_linear ..................... False
+[default0]:  merge_file ...................................... data/gpt2-merges.txt
+[default0]:  micro_batch_size ................................ 1
+[default0]:  min_loss_scale .................................. 1.0
+[default0]:  min_lr .......................................... 1e-06
+[default0]:  mmap_warmup ..................................... False
+[default0]:  no_load_optim ................................... None
+[default0]:  no_load_rng ..................................... None
+[default0]:  no_save_optim ................................... None
+[default0]:  no_save_rng ..................................... None
+[default0]:  noise_density ................................... None
+[default0]:  num_attention_heads ............................. 2
+[default0]:  num_channels .................................... 3
+[default0]:  num_classes ..................................... 1000
+[default0]:  num_layers ...................................... 2
+[default0]:  num_layers_per_virtual_pipeline_stage ........... None
+[default0]:  num_workers ..................................... 2
+[default0]:  onnx_safe ....................................... None
+[default0]:  openai_gelu ..................................... False
+[default0]:  optimizer ....................................... adam
+[default0]:  override_lr_scheduler ........................... False
+[default0]:  pad_vocab_size_to ............................... None
+[default0]:  params_dtype .................................... torch.float16
+[default0]:  partition_activations ........................... True
+[default0]:  patch_dim ....................................... 16
+[default0]:  pipeline_model_parallel_size .................... 1
+[default0]:  position_embedding_type ......................... PositionEmbeddingType.absolute
+[default0]:  pp_partition_method ............................. None
+[default0]:  profile_backward ................................ False
+[default0]:  query_in_block_prob ............................. 0.1
+[default0]:  rampup_batch_size ............................... ['2', '2', '1_000']
+[default0]:  rank ............................................ 0
+[default0]:  remote_device ................................... none
+[default0]:  reset_attention_mask ............................ False
+[default0]:  reset_position_ids .............................. False
+[default0]:  retriever_report_topk_accuracies ................ []
+[default0]:  retriever_score_scaling ......................... False
+[default0]:  retriever_seq_length ............................ 256
+[default0]:  reweight_loss_based_on_position_frequency ....... False
+[default0]:  sample_rate ..................................... 1.0
+[default0]:  save ............................................ checkpoints/gpt2-dist
+[default0]:  save_interval ................................... 50
+[default0]:  scatter_gather_tensors_in_pipeline .............. True
+[default0]:  scattered_embeddings ............................ False
+[default0]:  seed ............................................ 42
+[default0]:  seq_length ...................................... 512
+[default0]:  sgd_momentum .................................... 0.9
+[default0]:  short_seq_prob .................................. 0.1
+[default0]:  skip_train_iteration_range ...................... None
+[default0]:  split ........................................... 969, 30, 1
+[default0]:  split_transformers .............................. False
+[default0]:  sync_tp_duplicated_parameters ................... False
+[default0]:  synchronize_each_layer .......................... False
+[default0]:  tensor_model_parallel_size ...................... 2
+[default0]:  tensorboard_dir ................................. output_dir/tensorboard-dist
+[default0]:  tensorboard_log_interval ........................ 1
+[default0]:  tensorboard_queue_size .......................... 5
+[default0]:  test_weighted_split_names ....................... None
+[default0]:  test_weighted_split_paths ....................... None
+[default0]:  test_weighted_split_paths_path .................. None
+[default0]:  test_weighted_split_splits ...................... None
+[default0]:  test_weighted_split_weights ..................... None
+[default0]:  tile_factor ..................................... 1
+[default0]:  titles_data_path ................................ None
+[default0]:  tokenizer_name_or_path .......................... None
+[default0]:  tokenizer_type .................................. GPT2BPETokenizer
+[default0]:  train_iters ..................................... None
+[default0]:  train_samples ................................... 10000
+[default0]:  train_tokens .................................... None
+[default0]:  train_weighted_split_paths ...................... None
+[default0]:  train_weighted_split_paths_path ................. None
+[default0]:  universal_checkpoint ............................ False
+[default0]:  use_bnb_optimizer ............................... False
+[default0]:  use_checkpoint_lr_scheduler ..................... False
+[default0]:  use_contiguous_buffers_in_ddp ................... False
+[default0]:  use_cpu_initialization .......................... None
+[default0]:  use_one_sent_docs ............................... False
+[default0]:  use_pin_memory .................................. False
+[default0]:  valid_num_workers ............................... 2
+[default0]:  valid_weighted_split_names ...................... None
+[default0]:  valid_weighted_split_paths ...................... None
+[default0]:  valid_weighted_split_paths_path ................. None
+[default0]:  valid_weighted_split_splits ..................... None
+[default0]:  valid_weighted_split_weights .................... None
+[default0]:  virtual_pipeline_model_parallel_size ............ None
+[default0]:  vocab_extra_ids ................................. 0
+[default0]:  vocab_file ...................................... data/gpt2-vocab.json
+[default0]:  weight_decay .................................... 0.1
+[default0]:  world_size ...................................... 8
+[default0]:  zero_allgather_bucket_size ...................... 0.0
+[default0]:  zero_contigious_gradients ....................... False
+[default0]:  zero_reduce_bucket_size ......................... 0.0
+[default0]:  zero_reduce_scatter ............................. False
+[default0]:  zero_stage ...................................... 1
+[default0]:-------------------- end of arguments ---------------------
+[default0]:will use batch size rampup starting from global batch size 2 to global batch size 16 with batch size increments 2 over 1000 samples.
+[default0]:> building GPT2BPETokenizer tokenizer ...
+[default0]: > padded vocab (size: 50257) with 175 dummy tokens (new size: 50432)
+[default0]:DeepSpeed general environment info:
+[default0]:torch install path ............... ['/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch']
+[default0]:torch version .................... 1.12.0
+[default0]:deepspeed install path ........... ['/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed']
+[default0]:deepspeed info ................... 0.9.0, unknown, unknown
+[default0]:torch cuda version ............... 11.7
+[default0]:torch hip version ................ None
+[default0]:nvcc version ..................... 11.7
+[default0]:deepspeed wheel compiled w. ...... torch 1.12, cuda 11.7
+[default0]:**** Git info for Megatron: git_hash=e52bdab git_branch=main ****
+[default0]:> initializing torch distributed ...
+[default0]:[2023-04-19 15:35:07,110] [INFO] [comm.py:586:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[default0]:pretrain_gpt.py main
+[default0]:pretrain_gpt.py main
+[default0]:pretrain_gpt.py main
+[default0]:WARNING: TensorBoard writing requested but is not available (are you using PyTorch 1.1.0 or later?), no TensorBoard logs will be written.
+[default0]:pretrain_gpt.py main
+[default0]:> initializing tensor model parallel with size 2
+[default0]:> initializing pipeline model parallel with size 1
+[default0]:> setting random seeds to 42 ...
+[default0]:[2023-04-19 15:36:08,680] [INFO] [checkpointing.py:226:model_parallel_cuda_manual_seed] > initializing model parallel cuda seeds on global rank 0, model parallel rank 0, and data parallel rank 0 with model parallel seed: 2760 and data parallel seed: 42
+[default0]:> compiling dataset index builder ...
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:rank>0 waiting for rank 0 before loading kernels
+[default0]:make: Entering directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data'
+[default0]:make: Nothing to be done for 'default'.
+[default0]:make: Leaving directory '/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/data'
+[default0]:>>> done with dataset index builder. Compilation time: 0.418 seconds
+[default0]:WARNING: constraints for invoking optimized fused softmax kernel are not met. We default back to unfused kernel invocations.
+[default0]:> compiling and loading fused kernels ...
+[default0]:Detected CUDA files, patching ldflags
+[default0]:Emitting ninja build file /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/fused_kernels/build/build.ninja...
+[default0]:Building extension module scaled_upper_triang_masked_softmax_cuda...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:ninja: no work to do.
+[default0]:Loading extension module scaled_upper_triang_masked_softmax_cuda...
+[default0]:Detected CUDA files, patching ldflags
+[default0]:Emitting ninja build file /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/fused_kernels/build/build.ninja...
+[default0]:Building extension module scaled_masked_softmax_cuda...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:ninja: no work to do.
+[default0]:Loading extension module scaled_masked_softmax_cuda...
+[default0]:Detected CUDA files, patching ldflags
+[default0]:Emitting ninja build file /scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/fused_kernels/build/build.ninja...
+[default0]:Building extension module fused_mix_prec_layer_norm_cuda...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:ninja: no work to do.
+[default0]:Loading extension module fused_mix_prec_layer_norm_cuda...
+[default0]:rank 0 finished kernel load
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.69<0>
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.69<0>
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO Using network IB
+[default0]:NCCL version 2.12.12+cuda11.7
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.73<0>
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.75<0>
+[default0]:n2gpu1208:31304:31304 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.76<0>
+[default0]:n2gpu1206:31339:31339 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.74<0>
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.70<0>
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1206:31339:31339 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.70<0>
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO Using network IB
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.73<0>
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO Using network IB
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.75<0>
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO Using network IB
+[default0]:n2gpu1206:31339:31339 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.74<0>
+[default0]:n2gpu1206:31339:31339 [0] NCCL INFO Using network IB
+[default0]:n2gpu1204:31883:31883 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.72<0>
+[default0]:n2gpu1204:31883:31883 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1204:31883:31883 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.72<0>
+[default0]:n2gpu1204:31883:31883 [0] NCCL INFO Using network IB
+[default0]:n2gpu1208:31304:31304 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1208:31304:31304 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.76<0>
+[default0]:n2gpu1208:31304:31304 [0] NCCL INFO Using network IB
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO Bootstrap : Using ib1:10.10.103.71<0>
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO NET/Plugin : No plugin found (libnccl-net.so), using internal implementation
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [RO]; OOB ib1:10.10.103.71<0>
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO Using network IB
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Trees [0] 4/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] 5/1/-1->3->7
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Trees [0] 5/7/-1->6->4 [1] -1/-1/-1->6->5
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 00/0 : 5[3000] -> 6[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Trees [0] -1/-1/-1->5->6 [1] 6/4/-1->5->3
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 00/0 : 4[3000] -> 5[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Trees [0] 2/6/-1->4->0 [1] -1/-1/-1->4->5
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Trees [0] -1/-1/-1->1->2 [1] 2/0/-1->1->3
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] 3/-1/-1->7->-1
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Channel 00/0 : 6[3000] -> 7[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Trees [0] 1/3/-1->2->4 [1] -1/-1/-1->2->1
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 00/0 : 7[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 01/0 : 7[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 01/0 : 5[3000] -> 6[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 01/0 : 4[3000] -> 5[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 3[3000] -> 4[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 01/0 : 3[3000] -> 4[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 4[3000] -> 5[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Channel 01/0 : 6[3000] -> 7[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Channel 00/0 : 7[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 00/0 : 6[3000] -> 7[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 01/0 : 6[3000] -> 7[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 00/0 : 3[3000] -> 4[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 3[3000] -> 4[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 00/0 : 5[3000] -> 6[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 01/0 : 5[3000] -> 6[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Channel 01/0 : 7[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 01/0 : 4[3000] -> 5[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 00/0 : 2[3000] -> 4[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 2[3000] -> 4[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Channel 01/0 : 3[3000] -> 7[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 00/0 : 4[3000] -> 6[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 01/0 : 3[3000] -> 5[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 4[3000] -> 6[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Channel 01/0 : 7[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 00/0 : 4[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 00/0 : 0[3000] -> 4[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 00/0 : 4[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 3[3000] -> 5[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 00/0 : 6[3000] -> 4[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 0[3000] -> 4[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 4[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 7[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 3[3000] -> 7[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 01/0 : 5[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Channel 00/0 : 7[3000] -> 6[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 6[3000] -> 4[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 00/0 : 4[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 5[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 00/0 : 7[3000] -> 6[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 00/0 : 6[3000] -> 5[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Channel 01/0 : 6[3000] -> 5[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1208:31304:31341 [0] NCCL INFO comm 0x1531200090d0 rank 7 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 00/0 : 6[3000] -> 5[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Channel 01/0 : 5[3000] -> 4[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 01/0 : 6[3000] -> 5[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Channel 01/0 : 5[3000] -> 4[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1205:31160:31198 [0] NCCL INFO comm 0x14e4400090d0 rank 4 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1203:32579:32616 [0] NCCL INFO comm 0x1525480090d0 rank 2 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1204:31883:31920 [0] NCCL INFO comm 0x151b480090d0 rank 3 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1201:64050:64313 [0] NCCL INFO comm 0x152eac0090d0 rank 0 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO Launch mode Parallel
+[default0]:n2gpu1207:31308:31346 [0] NCCL INFO comm 0x14785c0090d0 rank 6 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1206:31339:31381 [0] NCCL INFO comm 0x1526780090d0 rank 5 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 8/8/512
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1202:38640:38680 [0] NCCL INFO comm 0x152cc80090d0 rank 1 nranks 8 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:barrier after loading kernels
+[default0]:rank>0 done waiting for rank 0 before loading kernels
+[default0]:rank>0 done waiting for rank 0 before loading kernels
+[default0]:rank>0 done waiting for rank 0 before loading kernels
+[default0]:rank>0 done waiting for rank 0 before loading kernels
+[default0]:rank>0 done waiting for rank 0 before loading kernels
+[default0]:rank>0 done waiting for rank 0 before loading kernels
+[default0]:rank>0 done waiting for rank 0 before loading kernels
+[default0]:barrier after loading kernels
+[default0]:barrier after loading kernels
+[default0]:barrier after loading kernels
+[default0]:barrier after loading kernels
+[default0]:barrier after loading kernels
+[default0]:barrier after loading kernels
+[default0]:barrier after loading kernels
+[default0]:>>> done with compiling and loading fused kernels. Compilation time: 8.250 seconds
+[default0]:time to initialize megatron (seconds): 81.379
+[default0]:[after megatron is initialized] datetime: 2023-04-19 15:36:17 
+[default0]:building GPT model ...
+[default0]:[2023-04-19 15:36:17,824] [INFO] [utils.py:785:see_memory_usage] Before Building Model
+[default0]:[2023-04-19 15:36:17,825] [INFO] [utils.py:786:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2023-04-19 15:36:17,825] [INFO] [utils.py:793:see_memory_usage] CPU Virtual Memory:  used = 11.86 GB, percent = 2.4%
+[default0]:SEED_LAYERS=False BASE_SEED=1234 SEED_FN=None
+[default0]:Using topology: {ProcessCoord(pipe=0, data=0, model=0): 0, ProcessCoord(pipe=0, data=0, model=1): 1, ProcessCoord(pipe=0, data=1, model=0): 2, ProcessCoord(pipe=0, data=1, model=1): 3, ProcessCoord(pipe=0, data=2, model=0): 4, ProcessCoord(pipe=0, data=2, model=1): 5, ProcessCoord(pipe=0, data=3, model=0): 6, ProcessCoord(pipe=0, data=3, model=1): 7}
+[default0]:[2023-04-19 15:36:19,151] [INFO] [module.py:358:_partition_layers] Partitioning pipeline stages with method type:transformer
+[default0]:stage=0 layers=9
+[default0]:     0: _to_float16
+[default0]:     1: EmbeddingPipe
+[default0]:     2: <lambda>
+[default0]:     3: ParallelTransformerLayerPipe
+[default0]:     4: ParallelTransformerLayerPipe
+[default0]:     5: undo
+[default0]:     6: MixedFusedLayerNorm
+[default0]:     7: EmbeddingPipe
+[default0]:     8: float16_to_fp32
+[default0]:  loss: CrossEntropy
+[default0]:[2023-04-19 15:36:19,224] [INFO] [utils.py:785:see_memory_usage] After Building Model
+[default0]:[2023-04-19 15:36:19,225] [INFO] [utils.py:786:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2023-04-19 15:36:19,225] [INFO] [utils.py:793:see_memory_usage] CPU Virtual Memory:  used = 11.86 GB, percent = 2.4%
+[default0]:setting training iterations to 748
+[default0]:> learning rate decay style: cosine
+[default0]:DeepSpeed is enabled.
+[default0]:[2023-04-19 15:36:19,226] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed info: version=0.9.0, git-hash=unknown, git-branch=unknown
+[default0]:NCCL version 2.12.12+cuda11.7
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 00/02 :    0   1   2   3
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 01/02 :    0   1   2   3
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Trees [0] 2/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Trees [0] -1/-1/-1->1->2 [1] 2/0/-1->1->3
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Trees [0] 1/3/-1->2->0 [1] -1/-1/-1->2->1
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] 1/-1/-1->3->-1
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 00/0 : 3[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 01/0 : 3[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] 1/-1/-1->3->-1
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Channel 00/0 : 3[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Trees [0] 1/3/-1->2->0 [1] -1/-1/-1->2->1
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Trees [0] -1/-1/-1->1->2 [1] 2/0/-1->1->3
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 00/02 :    0   1   2   3
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 01/02 :    0   1   2   3
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Trees [0] 2/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 00/0 : 3[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Channel 01/0 : 3[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 01/0 : 3[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Channel 00/0 : 3[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Channel 01/0 : 3[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 00/0 : 0[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 00/0 : 2[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 00/0 : 2[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 00/0 : 0[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 00/0 : 0[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 00/0 : 2[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 00/0 : 2[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 00/0 : 0[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1208:31304:31357 [0] NCCL INFO comm 0x1530e00090d0 rank 3 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1202:38640:38695 [0] NCCL INFO comm 0x152c8c0090d0 rank 0 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO Launch mode Parallel
+[default0]:n2gpu1207:31308:31377 [0] NCCL INFO comm 0x1478200090d0 rank 3 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1201:64050:64346 [0] NCCL INFO comm 0x152e680090d0 rank 0 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO Launch mode Parallel
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1206:31339:31398 [0] NCCL INFO comm 0x15263c0090d0 rank 2 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1205:31160:31236 [0] NCCL INFO comm 0x14e3fc0090d0 rank 2 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1204:31883:31934 [0] NCCL INFO comm 0x151b040090d0 rank 1 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1203:32579:32634 [0] NCCL INFO comm 0x1525080090d0 rank 1 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:Emitting ninja build file /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117/utils/build.ninja...
+[default0]:Building extension module utils...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:[2023-04-19 15:36:21,870] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[default0]:[2023-04-19 15:36:21,870] [INFO] [logging.py:96:log_dist] [Rank 0] Removing param_group that has no 'params' in the client Optimizer
+[default0]:[2023-04-19 15:36:21,870] [INFO] [logging.py:96:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[default0]:[2023-04-19 15:36:21,871] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[default0]:[2023-04-19 15:36:21,871] [INFO] [utils.py:51:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'apex.optimizers.fused_adam.FusedAdam'>
+[default0]:[2023-04-19 15:36:21,871] [INFO] [logging.py:96:log_dist] [Rank 0] Creating torch.float16 ZeRO stage 1 optimizer
+[default0]:[2023-04-19 15:36:21,871] [INFO] [stage_1_and_2.py:133:__init__] Reduce bucket size 500,000,000
+[default0]:[2023-04-19 15:36:21,871] [INFO] [stage_1_and_2.py:134:__init__] Allgather bucket size 500,000,000
+[default0]:[2023-04-19 15:36:21,871] [INFO] [stage_1_and_2.py:135:__init__] CPU Offload: False
+[default0]:[2023-04-19 15:36:21,871] [INFO] [stage_1_and_2.py:136:__init__] Round robin gradient partitioning: False
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:ninja: no work to do.
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.217789888381958 seconds
+[default0]:Rank: 1 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:Emitting ninja build file /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117/utils/build.ninja...
+[default0]:Building extension module utils...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:ninja: no work to do.
+[default0]:Loading extension module utils...
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:Time to load utils op: 0.28165459632873535 seconds
+[default0]:Rank: 6 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Emitting ninja build file /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117/utils/build.ninja...
+[default0]:Building extension module utils...
+[default0]:Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[default0]:ninja: no work to do.
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.624931812286377 seconds
+[default0]:Rank: 4 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 3.033367872238159 seconds
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 3.041153907775879 seconds
+[default0]:Rank: 0 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Rank: 5 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 3.02624249458313 seconds
+[default0]:Rank: 7 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Loading extension module utils...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 3.146108627319336 seconds
+[default0]:Rank: 2 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Time to load utils op: 3.492708444595337 seconds
+[default0]:Rank: 3 partition count [4, 4, 4] and sizes[(51520, False), (128, False), (42, False)] 
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.002622365951538086 seconds
+[default0]:NCCL version 2.12.12+cuda11.7
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.0015177726745605469 seconds
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.0007176399230957031 seconds
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.0040073394775390625 seconds
+[default0]:[2023-04-19 15:36:25,761] [INFO] [utils.py:785:see_memory_usage] Before initializing optimizer states
+[default0]:[2023-04-19 15:36:25,762] [INFO] [utils.py:786:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2023-04-19 15:36:25,762] [INFO] [utils.py:793:see_memory_usage] CPU Virtual Memory:  used = 11.95 GB, percent = 2.4%
+[default0]:[2023-04-19 15:36:25,799] [INFO] [utils.py:785:see_memory_usage] After initializing optimizer states
+[default0]:[2023-04-19 15:36:25,800] [INFO] [utils.py:786:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2023-04-19 15:36:25,800] [INFO] [utils.py:793:see_memory_usage] CPU Virtual Memory:  used = 11.95 GB, percent = 2.4%
+[default0]:[2023-04-19 15:36:25,800] [INFO] [stage_1_and_2.py:489:__init__] optimizer state initialized
+[default0]:[2023-04-19 15:36:25,820] [INFO] [utils.py:785:see_memory_usage] After initializing ZeRO optimizer
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.001462697982788086 seconds
+[default0]:NCCL version 2.12.12+cuda11.7
+[default0]:[2023-04-19 15:36:25,821] [INFO] [utils.py:786:see_memory_usage] MA 0.0 GB         Max_MA 0.0 GB         CA 0.0 GB         Max_CA 0 GB 
+[default0]:[2023-04-19 15:36:25,821] [INFO] [utils.py:793:see_memory_usage] CPU Virtual Memory:  used = 11.95 GB, percent = 2.4%
+[default0]:[2023-04-19 15:36:25,821] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Final Optimizer = FusedAdam
+[default0]:[2023-04-19 15:36:25,822] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed using client LR scheduler
+[default0]:[2023-04-19 15:36:25,822] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed LR Scheduler = <megatron.learning_rates.AnnealingLR object at 0x152f320e9db0>
+[default0]:[2023-04-19 15:36:25,822] [INFO] [logging.py:96:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0, 0.0], mom=[(0.9, 0.95), (0.9, 0.95), (0.9, 0.95)]
+[default0]:[2023-04-19 15:36:25,822] [INFO] [config.py:953:print] DeepSpeedEngine configuration:
+[default0]:[2023-04-19 15:36:25,822] [INFO] [config.py:957:print]   activation_checkpointing_config  {
+[default0]:    "partition_activations": false, 
+[default0]:    "contiguous_memory_optimization": false, 
+[default0]:    "cpu_checkpointing": false, 
+[default0]:    "number_checkpoints": null, 
+[default0]:    "synchronize_checkpoint_boundary": false, 
+[default0]:    "profile": false
+[default0]:}
+[default0]:[2023-04-19 15:36:25,822] [INFO] [config.py:957:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True}
+[default0]:[2023-04-19 15:36:25,822] [INFO] [config.py:957:print]   amp_enabled .................. False
+[default0]:[2023-04-19 15:36:25,822] [INFO] [config.py:957:print]   amp_params ................... False
+[default0]:[2023-04-19 15:36:25,822] [INFO] [config.py:957:print]   autotuning_config ............ {
+[default0]:    "enabled": false, 
+[default0]:    "start_step": null, 
+[default0]:    "end_step": null, 
+[default0]:    "metric_path": null, 
+[default0]:    "arg_mappings": null, 
+[default0]:    "metric": "throughput", 
+[default0]:    "model_info": null, 
+[default0]:    "results_dir": "autotuning_results", 
+[default0]:    "exps_dir": "autotuning_exps", 
+[default0]:    "overwrite": true, 
+[default0]:    "fast": true, 
+[default0]:    "start_profile_step": 3, 
+[default0]:    "end_profile_step": 5, 
+[default0]:    "tuner_type": "gridsearch", 
+[default0]:    "tuner_early_stopping": 5, 
+[default0]:    "tuner_num_trials": 50, 
+[default0]:    "model_info_path": null, 
+[default0]:    "mp_size": 1, 
+[default0]:    "max_train_batch_size": null, 
+[default0]:    "min_train_batch_size": 1, 
+[default0]:    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+[default0]:    "min_train_micro_batch_size_per_gpu": 1, 
+[default0]:    "num_tuning_micro_batch_sizes": 3
+[default0]:}
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   bfloat16_enabled ............. False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   checkpoint_parallel_write_pipeline  False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   checkpoint_tag_validation_enabled  True
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   checkpoint_tag_validation_fail  False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x152f31f14eb0>
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   communication_data_type ...... None
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   curriculum_enabled_legacy .... False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   curriculum_params_legacy ..... False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   data_efficiency_enabled ...... False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   dataloader_drop_last ......... False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   disable_allgather ............ False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   dump_state ................... False
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   dynamic_loss_scale_args ...... {'init_scale': 4096, 'scale_window': 500, 'delayed_shift': 2, 'min_scale': 1}
+[default0]:[2023-04-19 15:36:25,823] [INFO] [config.py:957:print]   eigenvalue_enabled ........... False
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   eigenvalue_gas_boundary_resolution  1
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   eigenvalue_layer_num ......... 0
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   eigenvalue_max_iter .......... 100
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   eigenvalue_stability ......... 1e-06
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   eigenvalue_tol ............... 0.01
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   eigenvalue_verbose ........... False
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   elasticity_enabled ........... False
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   flops_profiler_config ........ {
+[default0]:    "enabled": false, 
+[default0]:    "profile_step": 1, 
+[default0]:    "module_depth": -1, 
+[default0]:    "top_modules": 1, 
+[default0]:    "detailed": true, 
+[default0]:    "output_file": null
+[default0]:}
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   fp16_auto_cast ............... False
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   fp16_enabled ................. True
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   fp16_master_weights_and_gradients  False
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   global_rank .................. 0
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   grad_accum_dtype ............. None
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   gradient_accumulation_steps .. 4
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   gradient_clipping ............ 1
+[default0]:[2023-04-19 15:36:25,824] [INFO] [config.py:957:print]   gradient_predivide_factor .... 1.0
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   initial_dynamic_scale ........ 4096
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   load_universal_checkpoint .... False
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   loss_scale ................... 0
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   memory_breakdown ............. False
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') enabled=False
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   nebula_config ................ {
+[default0]:    "enabled": false, 
+[default0]:    "persistent_storage_path": null, 
+[default0]:    "persistent_time_interval": 100, 
+[default0]:    "num_of_version_in_retention": 2, 
+[default0]:    "enable_nebula_load": true, 
+[default0]:    "load_path": null
+[default0]:}
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   optimizer_legacy_fusion ...... False
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   optimizer_name ............... None
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   optimizer_params ............. None
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0}
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   pld_enabled .................. False
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   pld_params ................... False
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   prescale_gradients ........... False
+[default0]:[2023-04-19 15:36:25,832] [INFO] [config.py:957:print]   scheduler_name ............... None
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   scheduler_params ............. None
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   sparse_attention ............. None
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   sparse_gradients_enabled ..... False
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   steps_per_print .............. 2000
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   train_batch_size ............. 16
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   train_micro_batch_size_per_gpu  1
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   use_node_local_storage ....... False
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   wall_clock_breakdown ......... False
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   world_size ................... 4
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   zero_allow_untested_optimizer  False
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   zero_config .................. stage=1 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500,000,000 allgather_partitions=True allgather_bucket_size=500,000,000 overlap_comm=False load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1,000,000,000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50,000,000 param_persistence_threshold=100,000 model_persistence_threshold=sys.maxsize max_live_parameters=1,000,000,000 max_reuse_distance=1,000,000,000 gather_16bit_weights_on_model_save=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False memory_efficient_linear=True
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   zero_enabled ................. True
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   zero_force_ds_cpu_optimizer .. True
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:957:print]   zero_optimization_stage ...... 1
+[default0]:[2023-04-19 15:36:25,833] [INFO] [config.py:943:print_user_config]   json = {
+[default0]:    "train_micro_batch_size_per_gpu": 1, 
+[default0]:    "train_batch_size": 16, 
+[default0]:    "gradient_clipping": 1, 
+[default0]:    "zero_optimization": {
+[default0]:        "stage": 1
+[default0]:    }, 
+[default0]:    "fp16": {
+[default0]:        "enabled": true, 
+[default0]:        "loss_scale": 0, 
+[default0]:        "loss_scale_window": 500, 
+[default0]:        "hysteresis": 2, 
+[default0]:        "min_loss_scale": 1, 
+[default0]:        "initial_scale_power": 12
+[default0]:    }, 
+[default0]:    "steps_per_print": 2.000000e+03, 
+[default0]:    "wall_clock_breakdown": false
+[default0]:}
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.0009071826934814453 seconds
+[default0]:[2023-04-19 15:36:25,834] [INFO] [engine.py:81:__init__] CONFIG: micro_batches=4 micro_batch_size=1
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.0018343925476074219 seconds
+[default0]:Using /pc2/users/n/nikit/.cache/torch_extensions/py310_cu117 as PyTorch extensions root...
+[default0]:No modifications detected for re-loaded extension module utils, skipping build step...
+[default0]:Loading extension module utils...
+[default0]:Time to load utils op: 0.002230405807495117 seconds
+[default0]:NCCL version 2.12.12+cuda11.7
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1202:38640:38778 [0] NCCL INFO comm 0x152c580090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1201:64050:64413 [0] NCCL INFO comm 0x152e440090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO Launch mode Parallel
+[default0]:[2023-04-19 15:36:26,662] [INFO] [engine.py:136:__init__] RANK=0 STAGE=0 LAYERS=9 [0, 9) STAGE_PARAMS=206760 (0.207M) TOTAL_PARAMS=413520 (0.414M) UNIQUE_PARAMS=413520 (0.414M)
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1205:31160:31310 [0] NCCL INFO comm 0x14e3dc0090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO Launch mode Parallel
+[default0]:[2023-04-19 15:36:26,666] [INFO] [engine.py:136:__init__] RANK=1 STAGE=0 LAYERS=9 [0, 9) STAGE_PARAMS=206760 (0.207M) TOTAL_PARAMS=413520 (0.414M) UNIQUE_PARAMS=413520 (0.414M)
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1208:31304:31423 [0] NCCL INFO comm 0x1530c00090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1204:31883:32006 [0] NCCL INFO comm 0x151ae00090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1206:31339:31464 [0] NCCL INFO comm 0x1526140090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1203:32579:32701 [0] NCCL INFO comm 0x1524e00090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO Launch mode Parallel
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:n2gpu1207:31308:31451 [0] NCCL INFO comm 0x1477f80090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO Launch mode Parallel
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:WARNING: could not find the metadata file checkpoints/gpt2-dist 
+[default0]:    will not load any checkpoints and will start from random
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:time (ms) | load-checkpoint: 23.01
+[default0]:[2023-04-19 15:36:26,998] [WARNING] [engine.py:2535:load_checkpoint] Unable to find latest file at checkpoints/gpt2-dist/latest, if trying to load latest checkpoint please ensure this file exists or pass an explicit checkpoint tag when loading a checkpoint.
+[default0]:/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/utils.py:349: UserWarning: Parameter count with the embeddings will be inaccurate with PP > 1, as the first and last stage hold several copies of the embeddings
+[default0]:  warnings.warn("Parameter count with the embeddings will be inaccurate with PP > 1, as the first and last stage hold several copies of the embeddings")
+[default0]:estimated model parameters: 0.00041352
+[default0]:estimated model parameters without embeddings: 1.872e-06
+[default0]:[after model, optimizer, and learning rate scheduler are built] datetime: 2023-04-19 15:36:27 
+[default0]:> building train, validation, and test datasets ...
+[default0]: > datasets target sizes (minimum size):
+[default0]:    train:      10000
+[default0]:    validation: 1280
+[default0]:    test:       160
+[default0]:> building train, validation, and test datasets for GPT ...
+[default0]: > building dataset index ...
+[default0]:    reading sizes...
+[default0]:    reading pointers...
+[default0]:    reading document index...
+[default0]:    creating numpy buffer of mmap...
+[default0]:    creating memory view of numpy buffer...
+[default0]: > finished creating indexed dataset in 0.020434 seconds
+[default0]:    number of documents: 10000
+[default0]: > dataset split:
+[default0]:    train:
+[default0]:     document indices in [0, 9690) total of 9690 documents
+[default0]:    validation:
+[default0]:     document indices in [9690, 9990) total of 300 documents
+[default0]:    test:
+[default0]:     document indices in [9990, 10000) total of 10 documents
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 00/02 :    0   1   2   3
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 01/02 :    0   1   2   3
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Trees [0] 2/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] 1/-1/-1->3->-1
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Trees [0] -1/-1/-1->1->2 [1] 2/0/-1->1->3
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 00/0 : 3[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 01/0 : 3[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Trees [0] 1/3/-1->2->0 [1] -1/-1/-1->2->1
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 00/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Channel 00/0 : 3[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Channel 01/0 : 3[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 00/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 01/0 : 1[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 01/0 : 2[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 00/0 : 0[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 00/0 : 2[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 00/0 : 2[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 00/0 : 0[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Channel 01/0 : 1[3000] -> 3[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Channel 01/0 : 3[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 00/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 01/0 : 2[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Channel 00/0 : 3[3000] -> 2[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1207:31308:31455 [0] NCCL INFO comm 0x1477e40090d0 rank 3 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1205:31160:31314 [0] NCCL INFO comm 0x14e3c40090d0 rank 2 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1201:64050:64436 [0] NCCL INFO comm 0x152e300090d0 rank 0 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO Launch mode Parallel
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 8/8/512
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1203:32579:32705 [0] NCCL INFO comm 0x1524cc0090d0 rank 1 nranks 4 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 00/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 01/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 02/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 03/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 04/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 05/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 06/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 07/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 08/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 09/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 10/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 11/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 12/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 13/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 14/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 15/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 16/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 17/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 18/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 19/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 20/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 21/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 22/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 23/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 24/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 25/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 26/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 27/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 28/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 29/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 30/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Channel 31/32 :    0
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 00/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 01/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 02/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 03/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 04/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 05/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 06/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 07/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 08/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 09/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 10/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 11/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 12/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 13/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 14/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 15/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 16/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 17/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 18/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 19/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 20/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 21/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 22/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 23/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 24/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 25/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 26/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 27/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 28/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 29/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 30/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Channel 31/32 :    0
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 00/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 01/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 02/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 03/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 04/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 05/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 06/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 07/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 08/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 09/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 10/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 11/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 12/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 13/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 14/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 15/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 16/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 17/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 18/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 19/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 20/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 21/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 22/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 23/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 24/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 25/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 26/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 27/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 28/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 29/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 30/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Channel 31/32 :    0
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+[default0]:n2gpu1205:31160:31318 [0] NCCL INFO comm 0x14e3b40090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 00/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 01/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 02/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 03/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 04/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 05/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 06/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 07/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 08/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 09/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 10/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 11/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 12/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 13/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 14/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 15/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 16/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 17/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 18/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 19/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 20/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 21/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 22/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 23/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 24/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 25/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 26/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 27/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 28/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 29/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 30/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Channel 31/32 :    0
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Trees [0] -1/-1/-1->0->-1 [1] -1/-1/-1->0->-1 [2] -1/-1/-1->0->-1 [3] -1/-1/-1->0->-1 [4] -1/-1/-1->0->-1 [5] -1/-1/-1->0->-1 [6] -1/-1/-1->0->-1 [7] -1/-1/-1->0->-1 [8] -1/-1/-1->0->-1 [9] -1/-1/-1->0->-1 [10] -1/-1/-1->0->-1 [11] -1/-1/-1->0->-1 [12] -1/-1/-1->0->-1 [13] -1/-1/-1->0->-1 [14] -1/-1/-1->0->-1 [15] -1/-1/-1->0->-1 [16] -1/-1/-1->0->-1 [17] -1/-1/-1->0->-1 [18] -1/-1/-1->0->-1 [19] -1/-1/-1->0->-1 [20] -1/-1/-1->0->-1 [21] -1/-1/-1->0->-1 [22] -1/-1/-1->0->-1 [23] -1/-1/-1->0->-1 [24] -1/-1/-1->0->-1 [25] -1/-1/-1->0->-1 [26] -1/-1/-1->0->-1 [27] -1/-1/-1->0->-1 [28] -1/-1/-1->0->-1 [29] -1/-1/-1->0->-1 [30] -1/-1/-1->0->-1 [31] -1/-1/-1->0->-1
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+[default0]:n2gpu1201:64050:64440 [0] NCCL INFO comm 0x152e2c0090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]: > loading doc-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_train_indexmap_10000ns_512sl_42s_doc_idx.npy
+[default0]: > loading sample-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_train_indexmap_10000ns_512sl_42s_sample_idx.npy
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+[default0]:n2gpu1207:31308:31492 [0] NCCL INFO comm 0x1477e00090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO 32 coll channels, 32 p2p channels, 32 p2p channels per peer
+[default0]:n2gpu1203:32579:32709 [0] NCCL INFO comm 0x1524c00090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]: > loading shuffle-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_train_indexmap_10000ns_512sl_42s_shuffle_idx.npy
+[default0]:    loaded indexed file in 0.148 seconds
+[default0]:    total number of samples: 56335
+[default0]:    total number of epochs: 1
+[default0]: > loading doc-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_valid_indexmap_1280ns_512sl_42s_doc_idx.npy
+[default0]: > loading sample-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_valid_indexmap_1280ns_512sl_42s_sample_idx.npy
+[default0]: > loading shuffle-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_valid_indexmap_1280ns_512sl_42s_shuffle_idx.npy
+[default0]:    loaded indexed file in 0.059 seconds
+[default0]:    total number of samples: 1830
+[default0]:    total number of epochs: 1
+[default0]: > loading doc-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_test_indexmap_160ns_512sl_42s_doc_idx.npy
+[default0]:/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/utils/data/dataloader.py:557: UserWarning: This DataLoader will create 2 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+[default0]:  warnings.warn(_create_warning_msg(
+[default0]: > loading sample-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_test_indexmap_160ns_512sl_42s_sample_idx.npy
+[default0]: > loading shuffle-idx mapping from data/meg-gpt2-oscar-en-10k_text_document_test_indexmap_160ns_512sl_42s_shuffle_idx.npy
+[default0]:    loaded indexed file in 0.082 seconds
+[default0]:    total number of samples: 191
+[default0]:    total number of epochs: 3
+[default0]:> finished creating GPT datasets ...
+[default0]:/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/utils/data/dataloader.py:557: UserWarning: This DataLoader will create 2 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+[default0]:  warnings.warn(_create_warning_msg(
+[default0]:/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/utils/data/dataloader.py:557: UserWarning: This DataLoader will create 2 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+[default0]:  warnings.warn(_create_warning_msg(
+[default0]:/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/utils/data/dataloader.py:557: UserWarning: This DataLoader will create 2 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+[default0]:  warnings.warn(_create_warning_msg(
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Channel 00/02 :    0   1
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Channel 01/02 :    0   1
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [receive] via NET/IB/0
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Channel 00/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [receive] via NET/IB/0
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO Channel 00/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Channel 01/0 : 0[3000] -> 1[3000] [send] via NET/IB/0
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO Channel 01/0 : 1[3000] -> 0[3000] [send] via NET/IB/0
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1201:64050:64444 [0] NCCL INFO comm 0x152e180090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO Launch mode Parallel
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1202:38640:38782 [0] NCCL INFO comm 0x152c540090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1206:31339:31468 [0] NCCL INFO comm 0x1526000090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1204:31883:32010 [0] NCCL INFO comm 0x151acc0090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1207:31308:31504 [0] NCCL INFO comm 0x1477d00090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO Launch mode Parallel
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1208:31304:31484 [0] NCCL INFO comm 0x1530a80090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1203:32579:32713 [0] NCCL INFO comm 0x1524b00090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO Launch mode Parallel
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Connected all rings
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO Connected all trees
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 8/8/512
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO 2 coll channels, 2 p2p channels, 2 p2p channels per peer
+[default0]:n2gpu1205:31160:31322 [0] NCCL INFO comm 0x14e3ac0090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Init COMPLETE
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO Launch mode Parallel
+[default0]:[after dataloaders are built] datetime: 2023-04-19 15:36:36 
+[default0]:done with setup ...
+[default0]:training ...
+[default0]:Number of parameters: [tensor rank - pipeline rank] w/ and w/o embeddings:
+[default0]:[000-000] 0.0004B / 0.0000B
+[default0]:time (ms) | model-and-optimizer-setup: 9627.14 | train/valid/test-data-iterators-setup: 3514.49
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:[001-000] 0.0004B / 0.0000B
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:[before the start of training step] datetime: 2023-04-19 15:36:36 
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:Traceback (most recent call last):
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 236, in <module>
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:    main()
+[default0]:  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+[default0]:    return f(*args, **kwargs)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+[default0]:    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+[default0]:    iteration = train(forward_step_func,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+[default0]:    update_num_microbatches(args.consumed_train_samples)
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:    _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+[default0]:  File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+[default0]:    assert self.current_global_batch_size % \
+[default0]:AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+[default0]:n2gpu1206:31339:31382 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1202:38640:38681 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO comm 0x152cc80090d0 rank 1 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1208:31304:31342 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1201:64050:64314 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO comm 0x152eac0090d0 rank 0 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1201:64050:64414 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO comm 0x152e440090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1201:64050:64445 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1207:31308:31347 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO comm 0x14785c0090d0 rank 6 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1207:31308:31452 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO comm 0x1477f80090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1207:31308:31505 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO comm 0x1477d00090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1207:31308:31493 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1206:31339:31339 [0] NCCL INFO comm 0x1526780090d0 rank 5 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1206:31339:31465 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1206:31339:31339 [0] NCCL INFO comm 0x1526140090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1206:31339:31469 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1206:31339:31339 [0] NCCL INFO comm 0x1526000090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1202:38640:38779 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO comm 0x152c580090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1202:38640:38783 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1202:38640:38640 [0] NCCL INFO comm 0x152c540090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1203:32579:32617 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO comm 0x1525480090d0 rank 2 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1203:32579:32702 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO comm 0x1524e00090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1203:32579:32714 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1208:31304:31304 [0] NCCL INFO comm 0x1531200090d0 rank 7 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1208:31304:31424 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1208:31304:31304 [0] NCCL INFO comm 0x1530c00090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1208:31304:31485 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1208:31304:31304 [0] NCCL INFO comm 0x1530a80090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO comm 0x152e180090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1201:64050:64441 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO comm 0x152e2c0090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1201:64050:64437 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1201:64050:64050 [0] NCCL INFO comm 0x152e300090d0 rank 0 nranks 4 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO comm 0x1477e00090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1207:31308:31456 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1207:31308:31308 [0] NCCL INFO comm 0x1477e40090d0 rank 3 nranks 4 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1204:31883:31921 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1204:31883:31883 [0] NCCL INFO comm 0x151b480090d0 rank 3 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO comm 0x1524b00090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1203:32579:32710 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO comm 0x1524c00090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1203:32579:32706 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1203:32579:32579 [0] NCCL INFO comm 0x1524cc0090d0 rank 1 nranks 4 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1205:31160:31199 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO comm 0x14e4400090d0 rank 4 nranks 8 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1205:31160:31311 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO comm 0x14e3dc0090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1205:31160:31323 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO comm 0x14e3ac0090d0 rank 0 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1205:31160:31319 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO comm 0x14e3b40090d0 rank 0 nranks 1 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1205:31160:31315 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1204:31883:32007 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1204:31883:31883 [0] NCCL INFO comm 0x151ae00090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1204:31883:32011 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+[default0]:n2gpu1204:31883:31883 [0] NCCL INFO comm 0x151acc0090d0 rank 1 nranks 2 cudaDev 0 busId 3000 - Abort COMPLETE
+[default0]:n2gpu1205:31160:31160 [0] NCCL INFO comm 0x14e3c40090d0 rank 2 nranks 4 cudaDev 0 busId 3000 - Abort COMPLETE
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 38640) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 31339) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 31308) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 31160) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 64050) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 31304) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 32579) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 31883) of binary: /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/python
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "AssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5",
+    "extraInfo": {
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "AssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5",
+    "extraInfo": {
+      "py_callstack": "Traceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 345, in wrapper\n    return f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 232, in main\n    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 141, in pretrain\n    model, optimizer, lr_scheduler = setup_model_and_optimizer(model_provider)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 400, in setup_model_and_optimizer\n    model = get_model(model_provider_func)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 269, in get_model\n    model = model_provider_func(\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 51, in model_provider\n    with deepspeed.zero.Init(data_parallel_group=mpu.get_data_parallel_group(),\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/zero/partition_parameters.py\", line 690, in __init__\n    _ds_config = deepspeed.runtime.config.DeepSpeedConfig(config_dict_or_path,\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 764, in __init__\n    self._configure_train_batch_size()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 935, in _configure_train_batch_size\n    self._batch_assertion()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 883, in _batch_assertion\n    assert train_batch == micro_batch * grad_acc * self.world_size, (\nAssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5\n",
+      "timestamp": "1681911197"
+    },
+    "errorCode": 1
+  }
+}
+      "py_callstack": "Traceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 345, in wrapper\n    return f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 232, in main\n    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 141, in pretrain\n    model, optimizer, lr_scheduler = setup_model_and_optimizer(model_provider)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 400, in setup_model_and_optimizer\n    model = get_model(model_provider_func)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 269, in get_model\n    model = model_provider_func(\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 51, in model_provider\n    with deepspeed.zero.Init(data_parallel_group=mpu.get_data_parallel_group(),\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/zero/partition_parameters.py\", line 690, in __init__\n    _ds_config = deepspeed.runtime.config.DeepSpeedConfig(config_dict_or_path,\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 764, in __init__\n    self._configure_train_batch_size()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 935, in _configure_train_batch_size\n    self._batch_assertion()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 883, in _batch_assertion\n    assert train_batch == micro_batch * grad_acc * self.world_size, (\nAssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5\n",
+      "timestamp": "1681911197"
+    },
+    "errorCode": 1
+  }
+}
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1201.ab2021.local
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 64050)
+  error_file: /tmp/torchelastic_v3tmsveg/1234_ua4n4rv4/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    main()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 349, in wrapper
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    error_handler.dump_error_file(failure.error_file, failure.exitcode)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 122, in dump_error_file
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Unable to load original contents:
+
+    self._rm(my_error_file)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 147, in _rm
+    main()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    os.remove(my_error_file)
+FileNotFoundError: [Errno 2] No such file or directory: 'torch-elastic-error.json'
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    main()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    main()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1202.ab2021.local
+  rank      : 1 (local_rank: 0)
+  exitcode  : 1 (pid: 38640)
+  error_file: /tmp/torchelastic_fnz3gke3/1234_wxp6rgga/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1207.ab2021.local
+  rank      : 6 (local_rank: 0)
+  exitcode  : 1 (pid: 31308)
+  error_file: /tmp/torchelastic_w6vlb99p/1234_q0g02d3i/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1206.ab2021.local
+  rank      : 5 (local_rank: 0)
+  exitcode  : 1 (pid: 31339)
+  error_file: /tmp/torchelastic_zwuh75nq/1234_ykb06j99/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "AssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5",
+    "extraInfo": {
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "AssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5",
+    "extraInfo": {
+      "py_callstack": "Traceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 345, in wrapper\n    return f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 232, in main\n    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 141, in pretrain\n    model, optimizer, lr_scheduler = setup_model_and_optimizer(model_provider)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 400, in setup_model_and_optimizer\n    model = get_model(model_provider_func)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 269, in get_model\n    model = model_provider_func(\n  File \"/sc      "py_callstack": "Traceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 345, in wrapper\n    return f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 232, in main\n    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 141, in pretrain\n    model, optimizer, lr_scheduler = setup_model_and_optimizer(model_provider)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 400, in setup_model_and_optimizer\n    model = get_model(model_provider_func)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 269, in get_model\n    model = model_provider_func(\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 51, in model_provider\n    with deepspeed.zero.Init(data_parallel_group=mpu.get_data_parallel_group(),\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/zero/partition_parameters.py\", line 690, in __init__\n    _ds_config = deepspeed.runtime.config.DeepSpeedConfig(config_dict_or_path,\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 764, in __init__\n    self._configure_train_batch_size()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 935, in _configure_train_batch_size\n    self._batch_assertion()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 883, in _batch_assertion\n    assert train_batch == micro_batch * grad_acc * self.world_size, (\nAratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 51, in model_provider\n    with deepspeed.zero.Init(data_parallel_group=mpu.get_data_parallel_group(),\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/zero/partition_parameters.py\", line 690, in __init__\n    _ds_config = deepspeed.runtime.config.DeepSpeedConfig(config_dict_or_path,\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 764, in __init__\n    self._configure_train_batch_size()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 935, in _configure_train_batch_size\n    self._batch_assertion()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 883, in _batch_assertion\n    assert train_batch == micro_batch * grad_acc * self.world_size, (\nAssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5\n",
+      "timestamp": "1681911197"
+    },
+    "errorCode": 1
+  }
+}
+ssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5\n",
+      "timestamp": "1681911197"
+    },
+    "errorCode": 1
+  }
+}
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "AssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5",
+    "extraInfo": {
+WARNING:torch.distributed.elastic.multiprocessing.errors.error_handler:torch-elastic-error.json already exists and will be overwritten. Original contents:
+{
+  "message": {
+    "message": "AssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5",
+    "extraInfo": {
+      "py_callstack": "Traceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 345, in wrapper\n    return f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 232, in main\n    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 141, in pretrain\n    model, optimizer, lr_scheduler = setup_model_and_optimizer(model_provider)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 400, in setup_model_and_optimizer\n    model = get_model(model_provider_func)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 269, in get_model\n    model = model_provider_func(\n  File \"/sc      "py_callstack": "Traceback (most recent call last):\n  File \"/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py\", line 345, in wrapper\n    return f(*args, **kwargs)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 232, in main\n    pretrain(train_valid_test_datasets_provider, model_provider, forward_step,\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 141, in pretrain\n    model, optimizer, lr_scheduler = setup_model_and_optimizer(model_provider)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 400, in setup_model_and_optimizer\n    model = get_model(model_provider_func)\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py\", line 269, in get_model\n    model = model_provider_func(\n  File \"/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 51, in model_provider\n    with deepspeed.zero.Init(data_parallel_group=mpu.get_data_parallel_group(),\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/zero/partition_parameters.py\", line 690, in __init__\n    _ds_config = deepspeed.runtime.config.DeepSpeedConfig(config_dict_or_path,\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 764, in __init__\n    self._configure_train_batch_size()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 935, in _configure_train_batch_size\n    self._batch_assertion()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 883, in _batch_assertion\n    assert train_batch == micro_batch * grad_acc * self.world_size, (\nAratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py\", line 51, in model_provider\n    with deepspeed.zero.Init(data_parallel_group=mpu.get_data_parallel_group(),\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/zero/partition_parameters.py\", line 690, in __init__\n    _ds_config = deepspeed.runtime.config.DeepSpeedConfig(config_dict_or_path,\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 764, in __init__\n    self._configure_train_batch_size()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 935, in _configure_train_batch_size\n    self._batch_assertion()\n  File \"/scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/lib/python3.10/site-packages/deepspeed/runtime/config.py\", line 883, in _batch_assertion\n    assert train_batch == micro_batch * grad_acc * self.world_size, (\nAssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5\n",
+      "timestamp": "1681911197"
+    },
+    "errorCode": 1
+  }
+}
+ssertionError: Check batch related parameters. train_batch_size is not equal to micro_batch_per_gpu * gradient_acc_step * world_size 16 != 1 * 3 * 5\n",
+      "timestamp": "1681911197"
+    },
+    "errorCode": 1
+  }
+}
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1204.ab2021.local
+  rank      : 3 (local_rank: 0)
+  exitcode  : 1 (pid: 31883)
+  error_file: /tmp/torchelastic_x26vmbsd/1234_b0oq1nos/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+srun: error: n2gpu1202: task 1: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=3398739.0
+srun: error: n2gpu1206: task 5: Exited with exit code 1
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+srun: error: n2gpu1201: task 0: Exited with exit code 1
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1208.ab2021.local
+  rank      : 7 (local_rank: 0)
+  exitcode  : 1 (pid: 31304)
+  error_file: /tmp/torchelastic_r3_ybu3p/1234_xpd5mq98/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+srun: error: n2gpu1207: task 6: Exited with exit code 1
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1203.ab2021.local
+  rank      : 2 (local_rank: 0)
+  exitcode  : 1 (pid: 32579)
+  error_file: /tmp/torchelastic__mwbbze7/1234_d44vcw13/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    return _run_code(code, main_globals, None,
+  File "/opt/software/pc2/EB-SW/software/Python/3.10.4-GCCcore-11.3.0/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 349, in wrapper
+    exec(code, run_globals)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 765, in <module>
+    main()
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 349, in wrapper
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 349, in wrapper
+    error_handler.dump_error_file(failure.error_file, failure.exitcode)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 122, in dump_error_file
+    error_handler.dump_error_file(failure.error_file, failure.exitcode)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 122, in dump_error_file
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 122, in dump_error_file
+    return f(*args, **kwargs)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 761, in main
+    run(args)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/run.py", line 752, in run
+    self._rm(my_error_file)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 147, in _rm
+    elastic_launch(
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    self._rm(my_error_file)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 147, in _rm
+    self._rm(my_error_file)
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/error_handler.py", line 147, in _rm
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 245, in launch_agent
+    os.remove(my_error_file)
+FileNotFoundError: [Errno 2] No such file or directory: 'torch-elastic-error.json'
+    os.remove(my_error_file)
+FileNotFoundError: [Errno 2] No such file or directory: 'torch-elastic-error.json'
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+pretrain_gpt.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-04-19_15:36:36
+  host      : n2gpu1205.ab2021.local
+  rank      : 4 (local_rank: 0)
+  exitcode  : 1 (pid: 31160)
+  error_file: /tmp/torchelastic_1e73vkaq/1234_49rnd5kr/attempt_0/0/error.json
+  traceback : Traceback (most recent call last):
+    File "/opt/software/pc2/EB-SW/software/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 345, in wrapper
+      return f(*args, **kwargs)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/pretrain_gpt.py", line 232, in main
+      pretrain(train_valid_test_datasets_provider, model_provider, forward_step,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 188, in pretrain
+      iteration = train(forward_step_func,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/training.py", line 914, in train
+      update_num_microbatches(args.consumed_train_samples)
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/global_vars.py", line 55, in update_num_microbatches
+      _GLOBAL_NUM_MICROBATCHES_CALCULATOR.update(consumed_samples,
+    File "/scratch/hpc-prf-lola/nikit/repos/Megatron-DeepSpeed-BigScience/megatron/microbatches.py", line 150, in update
+      assert self.current_global_batch_size % \
+  AssertionError: current global batch size (2) is not divisible by micro-batch-size (1) times data parallel size (4)
+  
+============================================================
+    os.remove(my_error_file)
+FileNotFoundError: [Errno 2] No such file or directory: 'torch-elastic-error.json'
+srun: error: n2gpu1208: task 7: Exited with exit code 1
+srun: error: n2gpu1205: task 4: Exited with exit code 1
+srun: error: n2gpu1203: task 2: Exited with exit code 1
+srun: error: n2gpu1204: task 3: Exited with exit code 1
