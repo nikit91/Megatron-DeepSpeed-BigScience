@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH -J "Fast Setup - mini GPT2 train"
-#SBATCH -N 8
+#SBATCH -N 4
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:a100:1
+#SBATCH --gres=gpu:a100:4
 ###SBATCH --cpus-per-task=16
 #SBATCH -t 02:00:00
 

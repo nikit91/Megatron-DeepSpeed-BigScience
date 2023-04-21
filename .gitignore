@@ -146,3 +146,7 @@ staticfiles
 # tmp files
 *.swp
 misc/
+checkpoints*/
+data/
+ds_config.json
+torch-elastic-error.json
