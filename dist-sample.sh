@@ -1,10 +1,11 @@
 #!/bin/bash
 #SBATCH -J "Fast Setup - mini GPT2 train"
-#SBATCH -N 4
+#SBATCH -N 12
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:a100:4
-###SBATCH --cpus-per-task=16
-#SBATCH -t 02:00:00
+###SBATCH --partition=dgx
+###SBATCH --qos=devel
+#SBATCH -t 10:00:00
 
 #load modules
 #module load mpi/OpenMPI/4.1.4-GCC-11.3.0
@@ -15,12 +16,12 @@ module load ai/PyTorch/1.12.0-foss-2022a-CUDA-11.7.0
 # activating venv
 source /scratch/hpc-prf-lola/lib_repo/custom-venvs/lola1/bin/activate
 
-CHECKPOINT_PATH=checkpoints/gpt2-dist
+CHECKPOINT_PATH=checkpoints/gpt2-dist-1
 
 VOCAB_FILE=data/gpt2-vocab.json
 MERGE_FILE=data/gpt2-merges.txt
 DATA_PATH=data/meg-gpt2-oscar-en-10k_text_document
-TENSORBOARD_PATH=output_dir/tensorboard-dist
+TENSORBOARD_PATH=output_dir/tensorboard-dist-1
 
 # so processes know who to talk to
 MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
@@ -31,20 +32,22 @@ NNODES=$SLURM_NNODES
 
 
 MICRO_BATCH_SIZE=1
-GLOBAL_BATCH_SIZE=64
+GLOBAL_BATCH_SIZE=1152
 TP_SIZE=2
 PP_SIZE=1
 
-NLAYERS=2
-NHIDDEN=8
-NHEADS=2
-SEQ_LEN=512
+NLAYERS=24
+NHIDDEN=1024
+NHEADS=16
+SEQ_LEN=1024
 VOCAB_SIZE=50257
 
 SAVE_INTERVAL=50
-
-TRAIN_SAMPLES=10_000
+EPOCH=50
+TRAIN_SAMPLES=10000
 #    --rampup-batch-size 2 2 1_000 \
+#    --lr-decay-samples 12 \
+#    --lr-warmup-samples 5 \
 GPT_ARGS=" \
     --num-layers $NLAYERS \
     --hidden-size $NHIDDEN \
@@ -53,16 +56,14 @@ GPT_ARGS=" \
     --max-position-embeddings $SEQ_LEN \
     --micro-batch-size $MICRO_BATCH_SIZE \
     --global-batch-size $GLOBAL_BATCH_SIZE \
-    --train-samples $TRAIN_SAMPLES \
+    --train-samples $((TRAIN_SAMPLES*EPOCH)) \
     --optimizer adam \
     --adam-beta1 0.9 \
     --adam-beta2 0.95 \
     --adam-eps 1e-8 \
     --lr 1e-4 \
-    --lr-warmup-samples 5 \
     --min-lr 1e-6 \
     --lr-decay-style cosine \
-    --lr-decay-samples 12 \
     --clip-grad 1.0 \
     --weight-decay 1e-1 \
     --fp16 \
@@ -73,10 +74,10 @@ GPT_ARGS=" \
     "
 
 OUTPUT_ARGS=" \
-    --exit-interval 100 \
-    --log-interval 10 \
+    --exit-interval 1000 \
+    --log-interval 2 \
     --save-interval $SAVE_INTERVAL \
-    --eval-interval 100 \
+    --eval-interval 50 \
     --eval-iters 10 \
     --checkpoint-activations \
     "
@@ -133,7 +134,7 @@ ALL_ARGS="$GPT_ARGS $OUTPUT_ARGS $DATA_ARGS $DEEPSPEED_ARGS"
 export LAUNCHER="python -u -m torch.distributed.run \
     --nproc_per_node $GPUS_PER_NODE \
     --nnodes $NNODES \
-    --rdzv_id=1234 \
+    --rdzv_id=$RANDOM \
     --rdzv_endpoint $MASTER_ADDR:$MASTER_PORT \
     --rdzv_backend c10d \
     --max_restarts 0 \
@@ -165,3 +166,4 @@ export NCCL_ASYNC_ERROR_HANDLING=1
 echo LAUNCHER: $LAUNCHER
 echo CMD: $CMD
 srun --wait=60 --kill-on-bad-exit=1 bash -c "NCCL_DEBUG=INFO $LAUNCHER --node_rank \$SLURM_PROCID $CMD" 2>&1 | tee -a gpt2-dist.log
+# bash -c "NCCL_DEBUG=INFO $LAUNCHER --node_rank $SLURM_PROCID $CMD" 2>&1 | tee -a gpt2-dist.log
